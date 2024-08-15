@@ -1,0 +1,10 @@
+CODE	   PLATFORM	    LINK
+TOPIC	BIT MANIPULATION	
+		
+IRSTXOR	   CC-1400+	    https://www.codechef.com/practice/course/2-star-difficulty-problems/DIFF1500/problems/IRSTXOR
+BITEQU	   CC-1600+	    https://www.codechef.com/problems/BITEQU
+XORMUL	   CC-1700+	    https://www.codechef.com/problems/XORMUL?tab=statement
+XXOORR	   CC-1500+	    https://www.codechef.com/problems/XXOORR
+ANDSUBAR   CC-1500+	    https://www.codechef.com/problems/ANDSUBAR
+1610A      CF-1300+     https://codeforces.com/problemset/problem/1601/A
+BINADD     CC-1900+     https://www.codechef.com/problems/BINADD
