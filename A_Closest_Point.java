@@ -2,47 +2,27 @@ import java.util.*;
 import java.lang.*;
 import java.io.*;
 /**
- * C_Even_Positions
+ * A_Closest_Point
  */
-public class C_Even_Positions {
-    static class Pair {
-        char ch;
-        int i;
-        public Pair(char ch, int i) {
-            this.ch = ch;
-            this.i = i;
-        }
-    }
+public class A_Closest_Point {
+
     public static void main(String[] args) throws java.lang.Exception {
         FastWriter out = new FastWriter();
         int t = in.nextInt();
     
-        while (t-- > 0) {
-            int n = in.nextInt();
-            String s = in.next();
-            Stack<Pair> st = new Stack<>();
-            int ans = 0;
-            for(int i=0;i<n;i++){
-                char ch=s.charAt(i);
-                if(ch == '_'){
-                    if(st.isEmpty()){
-                        st.push(new Pair(ch,i));
-                    }else{
-                        Pair curr=st.pop();
-                        ans+=i-curr.i;
-                    }
-                }else if(ch == ')'){
-                    Pair curr=st.pop();
-                    if (curr.ch == '_') {
-                        ans+=i-curr.i;
-                    }
+        while (t != 0) {
+            t--;
+            int n=in.nextInt();
+            int a[]=ai(n);
+            if(n == 2){
+                if(Math.abs(a[0]-a[1]) > 1){
+                    out.println("YES");
                 }else{
-                    st.push(new Pair(ch,i));
+                    out.println("NO");
                 }
+            }else{
+                out.println("NO");
             }
-           
-
-            out.println(ans);
         }
         out.close();
     }
@@ -222,7 +202,14 @@ public class C_Even_Positions {
         }
         }
     
-    
+    static class Pair {
+        long f;
+        long s;
+        public Pair(long first, long second) {
+            this.f = first;
+            this.s = second;
+        }
+    }
     
     static class Triplet {
         long f;
