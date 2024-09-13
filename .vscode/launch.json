@@ -1,0 +1,805 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "A_AB_Balance",
+            "request": "launch",
+            "mainClass": "A_AB_Balance",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "A_A_B_Again",
+            "request": "launch",
+            "mainClass": "A_A_B_Again",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "A_Ambitious_Kid",
+            "request": "launch",
+            "mainClass": "A_Ambitious_Kid",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "A_Array_Elimination",
+            "request": "launch",
+            "mainClass": "A_Array_Elimination",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "A_AvtoBus",
+            "request": "launch",
+            "mainClass": "A_AvtoBus",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "A_Catch_the_Coin",
+            "request": "launch",
+            "mainClass": "A_Catch_the_Coin",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "A_Chess_For_Three",
+            "request": "launch",
+            "mainClass": "A_Chess_For_Three",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "A_Closest_Point",
+            "request": "launch",
+            "mainClass": "A_Closest_Point",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "A_Color_of_Balloon",
+            "request": "launch",
+            "mainClass": "A_Color_of_Balloon",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "A_Creating_Words",
+            "request": "launch",
+            "mainClass": "A_Creating_Words",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "A_Diagonals",
+            "request": "launch",
+            "mainClass": "A_Diagonals",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "A_Don_t_Try_to_Count",
+            "request": "launch",
+            "mainClass": "A_Don_t_Try_to_Count",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "A_Dora_s_Set",
+            "request": "launch",
+            "mainClass": "A_Dora_s_Set",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "A_Doremy_s_Paint_3",
+            "request": "launch",
+            "mainClass": "A_Doremy_s_Paint_3",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "A_Exciting_Bets",
+            "request": "launch",
+            "mainClass": "A_Exciting_Bets",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "A_Find_K_Distinct_Points_with_Fixed_Center",
+            "request": "launch",
+            "mainClass": "A_Find_K_Distinct_Points_with_Fixed_Center",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "A_Forked",
+            "request": "launch",
+            "mainClass": "A_Forked",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "A_Game_with_Integers",
+            "request": "launch",
+            "mainClass": "A_Game_with_Integers",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "A_Goals_of_Victory",
+            "request": "launch",
+            "mainClass": "A_Goals_of_Victory",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "A_Guess_the_Maximum",
+            "request": "launch",
+            "mainClass": "A_Guess_the_Maximum",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "A_Helmets_in_Night_Light",
+            "request": "launch",
+            "mainClass": "A_Helmets_in_Night_Light",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "A_How_Much_Does_Daytona_Cost",
+            "request": "launch",
+            "mainClass": "A_How_Much_Does_Daytona_Cost",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "A_Jagged_Swaps",
+            "request": "launch",
+            "mainClass": "A_Jagged_Swaps",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "A_Legs",
+            "request": "launch",
+            "mainClass": "A_Legs",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "A_Mainak_and_Array",
+            "request": "launch",
+            "mainClass": "A_Mainak_and_Array",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "A_Make_it_Beautiful",
+            "request": "launch",
+            "mainClass": "A_Make_it_Beautiful",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "A_Maximize_the_Last_Element",
+            "request": "launch",
+            "mainClass": "A_Maximize_the_Last_Element",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "A_Minimize",
+            "request": "launch",
+            "mainClass": "A_Minimize",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "A_Mocha_and_Math",
+            "request": "launch",
+            "mainClass": "A_Mocha_and_Math",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "A_Odd_Divisor",
+            "request": "launch",
+            "mainClass": "A_Odd_Divisor",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "A_Phone_Desktop",
+            "request": "launch",
+            "mainClass": "A_Phone_Desktop",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "A_Problem_Generator",
+            "request": "launch",
+            "mainClass": "A_Problem_Generator",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "A_QAQ",
+            "request": "launch",
+            "mainClass": "A_QAQ",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "A_Sakurako_s_Exam",
+            "request": "launch",
+            "mainClass": "A_Sakurako_s_Exam",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "A_Soccer",
+            "request": "launch",
+            "mainClass": "A_Soccer",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "A_Strange_Partition",
+            "request": "launch",
+            "mainClass": "A_Strange_Partition",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "A_Strong_Password",
+            "request": "launch",
+            "mainClass": "A_Strong_Password",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "A_Three_Indices",
+            "request": "launch",
+            "mainClass": "A_Three_Indices",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "A_Turtle_and_Good_Strings",
+            "request": "launch",
+            "mainClass": "A_Turtle_and_Good_Strings",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "A_United_We_Stand",
+            "request": "launch",
+            "mainClass": "A_United_We_Stand",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "A_X_Axis",
+            "request": "launch",
+            "mainClass": "A_X_Axis",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "B_01_Game",
+            "request": "launch",
+            "mainClass": "B_01_Game",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "B_1_Bouquet_Easy_Version",
+            "request": "launch",
+            "mainClass": "B_1_Bouquet_Easy_Version",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "B_Array_Cloning_Technique",
+            "request": "launch",
+            "mainClass": "B_Array_Cloning_Technique",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "B_Array_merging",
+            "request": "launch",
+            "mainClass": "B_Array_merging",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "B_Bad_Boy",
+            "request": "launch",
+            "mainClass": "B_Bad_Boy",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "B_Basketball_Together",
+            "request": "launch",
+            "mainClass": "B_Basketball_Together",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "B_Beautiful_Array",
+            "request": "launch",
+            "mainClass": "B_Beautiful_Array",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "B_Card_Game",
+            "request": "launch",
+            "mainClass": "B_Card_Game",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "B_Cat_Fox_and_the_Lonely_Array",
+            "request": "launch",
+            "mainClass": "B_Cat_Fox_and_the_Lonely_Array",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "B_Choose_the_Path",
+            "request": "launch",
+            "mainClass": "B_Choose_the_Path",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "B_Choosing_Cubes",
+            "request": "launch",
+            "mainClass": "B_Choosing_Cubes",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "B_Comparison_String",
+            "request": "launch",
+            "mainClass": "B_Comparison_String",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "B_Fence",
+            "request": "launch",
+            "mainClass": "B_Fence",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "B_Game_with_Doors",
+            "request": "launch",
+            "mainClass": "B_Game_with_Doors",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "B_Ilya_and_Queries",
+            "request": "launch",
+            "mainClass": "B_Ilya_and_Queries",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "B_Index_and_Maximum_Value",
+            "request": "launch",
+            "mainClass": "B_Index_and_Maximum_Value",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "B_Luke_is_a_Foodie",
+            "request": "launch",
+            "mainClass": "B_Luke_is_a_Foodie",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "B_Luntik_and_Subsequences",
+            "request": "launch",
+            "mainClass": "B_Luntik_and_Subsequences",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "B_Make_AP",
+            "request": "launch",
+            "mainClass": "B_Make_AP",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "B_Make_It_Increasing",
+            "request": "launch",
+            "mainClass": "B_Make_It_Increasing",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "B_Make_Three_Regions",
+            "request": "launch",
+            "mainClass": "B_Make_Three_Regions",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "B_Make_it_Divisible_by_25",
+            "request": "launch",
+            "mainClass": "B_Make_it_Divisible_by_25",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "B_Matrix_Stabilization",
+            "request": "launch",
+            "mainClass": "B_Matrix_Stabilization",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "B_Minimize_Equal_Sum_Subarrays",
+            "request": "launch",
+            "mainClass": "B_Minimize_Equal_Sum_Subarrays",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "B_Monsters",
+            "request": "launch",
+            "mainClass": "B_Monsters",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "B_Multiply_by_2_divide_by_6",
+            "request": "launch",
+            "mainClass": "B_Multiply_by_2_divide_by_6",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "B_Napoleon_Cake",
+            "request": "launch",
+            "mainClass": "B_Napoleon_Cake",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "B_Not_Dividing",
+            "request": "launch",
+            "mainClass": "B_Not_Dividing",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "B_Odd_Grasshopper",
+            "request": "launch",
+            "mainClass": "B_Odd_Grasshopper",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "B_Olya_and_Game_with_Arrays",
+            "request": "launch",
+            "mainClass": "B_Olya_and_Game_with_Arrays",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "B_Red_and_Blue",
+            "request": "launch",
+            "mainClass": "B_Red_and_Blue",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "B_Scale",
+            "request": "launch",
+            "mainClass": "B_Scale",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "B_Sequence_Game",
+            "request": "launch",
+            "mainClass": "B_Sequence_Game",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "B_Square_or_Not",
+            "request": "launch",
+            "mainClass": "B_Square_or_Not",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "B_Sum_of_Medians",
+            "request": "launch",
+            "mainClass": "B_Sum_of_Medians",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "B_Swap_and_Delete",
+            "request": "launch",
+            "mainClass": "B_Swap_and_Delete",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "B_Symmetric_Encoding",
+            "request": "launch",
+            "mainClass": "B_Symmetric_Encoding",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "B_Turtle_and_Piggy_Are_Playing_a_Game_2",
+            "request": "launch",
+            "mainClass": "B_Turtle_and_Piggy_Are_Playing_a_Game_2",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "B_XOR_Sequences",
+            "request": "launch",
+            "mainClass": "B_XOR_Sequences",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "C_A_Galactic_Mission",
+            "request": "launch",
+            "mainClass": "C_A_Galactic_Mission",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "C_Classy_Numbers",
+            "request": "launch",
+            "mainClass": "C_Classy_Numbers",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "C_Longest_Good_Array",
+            "request": "launch",
+            "mainClass": "C_Longest_Good_Array",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "C_Raspberries",
+            "request": "launch",
+            "mainClass": "C_Raspberries",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "C_Showering",
+            "request": "launch",
+            "mainClass": "C_Showering",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "C_Ski_Resort",
+            "request": "launch",
+            "mainClass": "C_Ski_Resort",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "C_Sofia_and_the_Lost_Operations",
+            "request": "launch",
+            "mainClass": "C_Sofia_and_the_Lost_Operations",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "C_Sort",
+            "request": "launch",
+            "mainClass": "C_Sort",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "C_Target_Practice",
+            "request": "launch",
+            "mainClass": "C_Target_Practice",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "C_Traffic_Light",
+            "request": "launch",
+            "mainClass": "C_Traffic_Light",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "C_Turtle_and_Good_Pairs",
+            "request": "launch",
+            "mainClass": "C_Turtle_and_Good_Pairs",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "C_Update_Queries",
+            "request": "launch",
+            "mainClass": "C_Update_Queries",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "Convert_string",
+            "request": "launch",
+            "mainClass": "Convert_string",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "D_Deletive_Editing",
+            "request": "launch",
+            "mainClass": "D_Deletive_Editing",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "D_Distinct_Split",
+            "request": "launch",
+            "mainClass": "D_Distinct_Split",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "D_GCD_sequence",
+            "request": "launch",
+            "mainClass": "D_GCD_sequence",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "D_Manhattan_Circle",
+            "request": "launch",
+            "mainClass": "D_Manhattan_Circle",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "D_Slavic_s_Exam",
+            "request": "launch",
+            "mainClass": "D_Slavic_s_Exam",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "E_Decode",
+            "request": "launch",
+            "mainClass": "E_Decode",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "E_Triple_Operations",
+            "request": "launch",
+            "mainClass": "E_Triple_Operations",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "Easy_Subarray_Sum",
+            "request": "launch",
+            "mainClass": "Easy_Subarray_Sum",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "F_Final_Boss",
+            "request": "launch",
+            "mainClass": "F_Final_Boss",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "FightBots",
+            "request": "launch",
+            "mainClass": "FightBots",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "Klee_s_SUPER_DUPER_LARGE_Array",
+            "request": "launch",
+            "mainClass": "Klee_s_SUPER_DUPER_LARGE_Array",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "M_Minimum_LCM",
+            "request": "launch",
+            "mainClass": "M_Minimum_LCM",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "Maximise_Sum",
+            "request": "launch",
+            "mainClass": "Maximise_Sum",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "Primary_Task",
+            "request": "launch",
+            "mainClass": "Primary_Task",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "Satyam_and_Counting",
+            "request": "launch",
+            "mainClass": "Satyam_and_Counting",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "Seating_in_a_Bus",
+            "request": "launch",
+            "mainClass": "Seating_in_a_Bus",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "Stack",
+            "request": "launch",
+            "mainClass": "Stack",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "The_Legend_of_Freya_the_Frog",
+            "request": "launch",
+            "mainClass": "The_Legend_of_Freya_the_Frog",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "bs",
+            "request": "launch",
+            "mainClass": "bs",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "osu_mania",
+            "request": "launch",
+            "mainClass": "osu_mania",
+            "projectName": "Codeforces_99aaf5e"
+        }
+    ]
+}
