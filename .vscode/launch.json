@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Xometry_Easy_Version",
+            "request": "launch",
+            "mainClass": "Xometry_Easy_Version",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"
