@@ -2,9 +2,9 @@ import java.util.*;
 import java.lang.*;
 import java.io.*;
 /**
- * Ball_Game
+ * A_Meaning_Mean
  */
-public class Ball_Game {
+public class A_Meaning_Mean {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -77,46 +77,20 @@ public class Ball_Game {
             return str;
         }
     }
-    static class Pair{
-        long x;
-        long y;
-        Pair(long x,long y){
-            this.x=x;
-            this.y=y;
-        }
-    }
+    
     public static void main(String[] args) throws java.lang.Exception {
         int t = in.nextInt();
     
         while (t != 0) {
             t--;
-            int n = in.nextInt();
-            long avirala[] = al(n);
-            long aviralb[] = al(n);
-            ArrayList<Pair> list = new ArrayList<>();
-            
-            // Add pairs to the list
-            for (int i = 0; i < n; i++) {
-                list.add(new Pair(avirala[i], aviralb[i]));
+            int n=in.nextInt();
+            long a[]=al(n);
+            Arrays.sort(a);
+            long ans=a[0];
+            for(int i=1;i<n;i++){
+                ans=(ans+a[i])/2;
             }
-            
-            // Sort list by the 'x' values (casting long to int can cause data loss, be careful)
-            Collections.sort(list, (p1, p2) -> Long.compare(p1.x, p2.x));
-            
-            Stack<Integer> idx = new Stack<>();
-            idx.push(n - 1);
-            int result = 1;
-            
-            // Iterate through the pairs from n-2 down to 0
-            for (int i = n - 2; i >= 0; i--) {
-                if (list.get(i).x * list.get(idx.peek()).y <= list.get(i).y * list.get(idx.peek()).x) {
-                    result++;
-                    idx.pop();
-                    idx.push(i);
-                }
-            }
-            System.out.println(result);
+            System.out.println(ans);
         }
-        
     }
 }
