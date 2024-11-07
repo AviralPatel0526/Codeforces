@@ -6,6 +6,41 @@
     "configurations": [
         {
             "type": "java",
+            "name": "ServiceNowOA",
+            "request": "launch",
+            "mainClass": "ServiceNowOA",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "Subs",
+            "request": "launch",
+            "mainClass": "Subs",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "E_Reverse_the_Rivers",
+            "request": "launch",
+            "mainClass": "E_Reverse_the_Rivers",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "Tree",
+            "request": "launch",
+            "mainClass": "Tree",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "oa",
+            "request": "launch",
+            "mainClass": "oa",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
             "name": "Xometry_Easy_Version",
             "request": "launch",
             "mainClass": "Xometry_Easy_Version",
