@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "B_Valerii_Against_Everyone",
+            "request": "launch",
+            "mainClass": "B_Valerii_Against_Everyone",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
             "name": "ServiceNowOA",
             "request": "launch",
             "mainClass": "ServiceNowOA",
