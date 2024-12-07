@@ -1,7 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-public class B_Fair_Numbers {
+public class A_Line_Breaks {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -78,24 +78,30 @@ public class B_Fair_Numbers {
     public static void main(String[] args) throws java.lang.Exception {
         int t = in.nextInt();
     
-        while (t-- > 0) {
-            long n = in.nextLong();
-            for(long j=n;;j++){
-                long lcm = 1;
-                String s = Long.toString(j);
-                for (int i = 0; i < s.length(); i++) {
-                    char ch = s.charAt(i);
-                    if (ch != '0') {
-                        lcm = lcm(lcm, ch - '0');
-                    }
-                }
-                if(j%lcm == 0){
-                    System.out.println(j);
+        while (t != 0) {
+            t--;
+            int n=in.nextInt();
+            int m=in.nextInt();
+            int cnt=0;
+            int ans=0;
+            ArrayList<String> list=new ArrayList<>();
+            for(int i=0;i<n;i++){
+                list.add(in.next());
+            }
+            for(int i=0;i<n;i++){
+                String s=list.get(i);
+                cnt+=s.length();
+                ans++;
+                if(cnt >= m){
                     break;
                 }
             }
-            
-            
+            if(cnt > m){
+                System.out.println(ans-1);
+            }else{
+                System.out.println(ans);
+            }
+
         }
     }
 }

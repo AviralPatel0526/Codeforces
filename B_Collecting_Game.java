@@ -1,7 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-public class B_Fair_Numbers {
+public class B_Collecting_Game {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -74,28 +74,52 @@ public class B_Fair_Numbers {
             return str;
         }
     }
+    static class Pair {
+        long x;
+        int idx;
+        Pair(long x, int idx) {
+            this.x = x;
+            this.idx = idx;
+        }
+    }
     
     public static void main(String[] args) throws java.lang.Exception {
         int t = in.nextInt();
     
-        while (t-- > 0) {
-            long n = in.nextLong();
-            for(long j=n;;j++){
-                long lcm = 1;
-                String s = Long.toString(j);
-                for (int i = 0; i < s.length(); i++) {
-                    char ch = s.charAt(i);
-                    if (ch != '0') {
-                        lcm = lcm(lcm, ch - '0');
-                    }
-                }
-                if(j%lcm == 0){
-                    System.out.println(j);
-                    break;
+        while (t != 0) {
+            t--;
+            int n = in.nextInt();
+            long a[] = al(n);
+            ArrayList<Pair> list = new ArrayList<>();
+            for (int i = 0; i < n; i++) {
+                list.add(new Pair(a[i], i));
+            }
+            Collections.sort(list, (p1, p2) -> Long.compare(p1.x, p2.x));
+            long pre[] = new long[n];
+            pre[0] = list.get(0).x;
+            for (int i = 1; i < n; i++) {
+                pre[i] = pre[i - 1] + list.get(i).x;
+            }
+            int ans[] = new int[n];
+            ans[n-1]=n-1;
+            for(int i=n-2;i>=0;i--){
+                if(pre[i] >= list.get(i+1).x){
+                    ans[i]=ans[i+1];
+                }else{
+                    ans[i]=i;
                 }
             }
-            
-            
+            int res[]=new int[n];
+            for(int i=0;i<n;i++){
+                res[list.get(i).idx]=ans[i];
+            }
+            for(int i=0;i<n;i++){
+                System.out.print(res[i]+" ");
+            }
+            System.out.println();
         }
     }
+    
+
+    
 }

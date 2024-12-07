@@ -1,7 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-public class B_Fair_Numbers {
+public class Nice_Array {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -78,24 +78,46 @@ public class B_Fair_Numbers {
     public static void main(String[] args) throws java.lang.Exception {
         int t = in.nextInt();
     
-        while (t-- > 0) {
-            long n = in.nextLong();
-            for(long j=n;;j++){
-                long lcm = 1;
-                String s = Long.toString(j);
-                for (int i = 0; i < s.length(); i++) {
-                    char ch = s.charAt(i);
-                    if (ch != '0') {
-                        lcm = lcm(lcm, ch - '0');
+        while (t != 0) {
+            t--;
+            int n=in.nextInt();
+            long k=in.nextLong();
+            long a[]=al(n);
+            long sp=0;
+            long sn=0;
+            long cntp=0;
+            long cntn=0;
+            for(int i=0;i<n;i++){
+                if(a[i] >= 0){
+                    if(a[i]%k != 0){
+                        cntp++;
                     }
-                }
-                if(j%lcm == 0){
-                    System.out.println(j);
-                    break;
+                    sp+=a[i]/k;
+                }else{
+                    if(a[i]%k != 0){
+                        cntn++;
+                    }
+                    sn+=a[i]/k;
                 }
             }
-            
-            
+            if(Math.abs(sp) == Math.abs(sn)){
+                System.out.println("YES");
+            }else{
+                long diff=Math.abs(sp-Math.abs(sn));
+                if(Math.abs(sp) > Math.abs(sn)){
+                    if(cntn >= diff){
+                        System.out.println("YES");
+                    }else{
+                        System.out.println("NO");
+                    }
+                }else{
+                    if(cntp >= diff){
+                        System.out.println("YES");
+                    }else{
+                        System.out.println("NO");
+                    }
+                }
+            }
         }
     }
 }

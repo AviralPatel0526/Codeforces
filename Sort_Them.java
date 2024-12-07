@@ -1,7 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-public class B_Fair_Numbers {
+public class Sort_Them {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -68,34 +68,64 @@ public class B_Fair_Numbers {
             String str = "";
             try {
                 str = br.readLine().trim();
-            } catch (Exception e) {
+            } catch (Exception e) {  
                 e.printStackTrace();
             }
             return str;
         }
     }
-    
-    public static void main(String[] args) throws java.lang.Exception {
-        int t = in.nextInt();
-    
-        while (t-- > 0) {
-            long n = in.nextLong();
-            for(long j=n;;j++){
-                long lcm = 1;
-                String s = Long.toString(j);
-                for (int i = 0; i < s.length(); i++) {
-                    char ch = s.charAt(i);
-                    if (ch != '0') {
-                        lcm = lcm(lcm, ch - '0');
-                    }
-                }
-                if(j%lcm == 0){
-                    System.out.println(j);
-                    break;
-                }
-            }
-            
-            
+    public static int[][] dp;
+
+    public static int solve(String s, int[] pos, int idx, char pre, String p) {
+        if (idx == s.length()) {
+            return 0;
         }
+
+        // DP state already computed
+        if (dp[idx][pre - 'a'] != -1) {
+            return dp[idx][pre - 'a'];
+        }
+
+        int ans = (int) 1e9;
+
+        // If we don't replace the current character
+        if (s.charAt(idx) >= pre) {
+            ans = solve(s, pos, idx + 1, s.charAt(idx), p);
+        }
+
+        // If we replace the current character
+        char replacement = p.charAt(25 - pos[s.charAt(idx) - 'a']);
+        if (replacement >= pre) {
+            ans = Math.min(ans, 1 + solve(s, pos, idx + 1, replacement, p));
+        }
+
+        // Memoize result
+        return dp[idx][pre - 'a'] = ans;
     }
+
+    public static void main(String[] args) {
+        int t = in.nextInt();
+
+        while (t-- > 0) {
+            int n = in.nextInt();
+            String s = in.next();
+            String p = in.next();
+
+            int[] pos = new int[26];
+            for (int i = 0; i < 26; i++) {
+                pos[p.charAt(i) - 'a'] = i;
+            }
+
+            dp = new int[n][26];
+            for (int[] row : dp) {
+                Arrays.fill(row, -1);
+            }
+
+            int ans = solve(s, pos, 0, 'a', p);
+            if (ans >= (int) 1e9) ans = -1;
+            System.out.println(ans);
+        }
+
+    }
+    
 }

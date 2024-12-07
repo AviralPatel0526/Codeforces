@@ -1,7 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-public class B_Fair_Numbers {
+public class B_2_D_Traveling {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -78,24 +78,44 @@ public class B_Fair_Numbers {
     public static void main(String[] args) throws java.lang.Exception {
         int t = in.nextInt();
     
-        while (t-- > 0) {
-            long n = in.nextLong();
-            for(long j=n;;j++){
-                long lcm = 1;
-                String s = Long.toString(j);
-                for (int i = 0; i < s.length(); i++) {
-                    char ch = s.charAt(i);
-                    if (ch != '0') {
-                        lcm = lcm(lcm, ch - '0');
-                    }
-                }
-                if(j%lcm == 0){
-                    System.out.println(j);
-                    break;
-                }
+        while (t != 0) {
+            t--;
+            int n=in.nextInt();
+            int k=in.nextInt();
+            int a=in.nextInt();
+            int b=in.nextInt();
+            long x[][]=new long[n][2];
+            for(int i=0;i<n;i++){
+                x[i][0]=in.nextLong();
+                x[i][1]=in.nextLong();
             }
-            
-            
+            if(a <= k && b <= k){
+                System.out.println(0);
+            }else{
+                long min=Math.abs(x[a-1][0]-x[b-1][0])+Math.abs(x[a-1][1]-x[b-1][1]);
+                if(a <= k){
+                    for(int i=0;i<k;i++){
+                        min=Math.min(min,Math.abs(x[i][0]-x[b-1][0])+Math.abs(x[i][1]-x[b-1][1]));
+                    }
+                }else if(b <= k){
+                    for(int i=0;i<k;i++){
+                        min=Math.min(min,Math.abs(x[a-1][0]-x[i][0])+Math.abs(x[a-1][1]-x[i][1]));
+                    }
+                }else{
+                    long mina=10000000000l;
+                    for(int i=0;i<k;i++){
+                        mina=Math.min(mina,Math.abs(x[i][0]-x[a-1][0])+Math.abs(x[i][1]-x[a-1][1]));
+                    }
+                    Long minb=10000000000l;
+                    for(int i=0;i<k;i++){
+                        minb=Math.min(minb,Math.abs(x[i][0]-x[b-1][0])+Math.abs(x[i][1]-x[b-1][1]));
+                    }
+                    
+                    min=Math.min(min,mina+minb);
+                }
+
+                System.out.println(min);
+            }
         }
     }
 }

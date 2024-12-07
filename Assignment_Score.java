@@ -1,7 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-public class B_Fair_Numbers {
+public class Assignment_Score {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -78,24 +78,24 @@ public class B_Fair_Numbers {
     public static void main(String[] args) throws java.lang.Exception {
         int t = in.nextInt();
     
-        while (t-- > 0) {
-            long n = in.nextLong();
-            for(long j=n;;j++){
-                long lcm = 1;
-                String s = Long.toString(j);
-                for (int i = 0; i < s.length(); i++) {
-                    char ch = s.charAt(i);
-                    if (ch != '0') {
-                        lcm = lcm(lcm, ch - '0');
-                    }
-                }
-                if(j%lcm == 0){
-                    System.out.println(j);
-                    break;
+        while (t != 0) {
+            t--;
+            int n=in.nextInt();
+            int a[]=ai(n);
+            int sum=0;
+            for(int i=0;i<n;i++){
+                sum+=a[i];
+            }
+            int max=50*(n+1);
+            if(sum >= max){
+                System.out.println(0);
+            }else{
+                if(max-sum > 100){
+                    System.out.println(-1);
+                }else{
+                    System.out.println(max-sum);
                 }
             }
-            
-            
         }
     }
 }

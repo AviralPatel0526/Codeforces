@@ -1,7 +1,8 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-public class B_Fair_Numbers {
+
+public class A_Greedy_Monocarp {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -78,24 +79,26 @@ public class B_Fair_Numbers {
     public static void main(String[] args) throws java.lang.Exception {
         int t = in.nextInt();
     
-        while (t-- > 0) {
-            long n = in.nextLong();
-            for(long j=n;;j++){
-                long lcm = 1;
-                String s = Long.toString(j);
-                for (int i = 0; i < s.length(); i++) {
-                    char ch = s.charAt(i);
-                    if (ch != '0') {
-                        lcm = lcm(lcm, ch - '0');
-                    }
-                }
-                if(j%lcm == 0){
-                    System.out.println(j);
+        while (t != 0) {
+            t--;
+            int n=in.nextInt();
+            int k=in.nextInt();
+            int a[]=ai(n);
+            Arrays.sort(a);
+            int sum=0;
+            int ans=0;
+            for(int i=n-1;i>=0;i--){
+                sum+=a[i];
+                if(sum > k){
+                    ans=k-sum+a[i];   
                     break;
                 }
+                
             }
-            
-            
+            if(sum < k){
+                ans=k-sum;
+            }
+            System.out.println(ans);
         }
     }
 }

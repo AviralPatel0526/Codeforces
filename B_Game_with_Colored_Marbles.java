@@ -1,7 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-public class B_Fair_Numbers {
+public class B_Game_with_Colored_Marbles {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -78,23 +78,26 @@ public class B_Fair_Numbers {
     public static void main(String[] args) throws java.lang.Exception {
         int t = in.nextInt();
     
-        while (t-- > 0) {
-            long n = in.nextLong();
-            for(long j=n;;j++){
-                long lcm = 1;
-                String s = Long.toString(j);
-                for (int i = 0; i < s.length(); i++) {
-                    char ch = s.charAt(i);
-                    if (ch != '0') {
-                        lcm = lcm(lcm, ch - '0');
-                    }
-                }
-                if(j%lcm == 0){
-                    System.out.println(j);
-                    break;
+        while (t != 0) {
+            t--;
+            int n=in.nextInt();
+            int a[]=ai(n);
+            HashMap<Integer,Integer> map=new HashMap<>();
+          
+            for(int i=0;i<n;i++){
+                map.put(a[i],map.getOrDefault(a[i], 0)+1);
+            }
+            int cnt=0;
+            int ans=0;
+            for(Integer key:map.keySet()){
+                if(map.get(key) == 1){
+                    cnt++;
+                }else{
+                    ans++;
                 }
             }
-            
+            ans+=((cnt+1)/2)*2;
+            System.out.println(ans);
             
         }
     }

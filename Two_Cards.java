@@ -1,7 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-public class B_Fair_Numbers {
+public class Two_Cards {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -74,28 +74,50 @@ public class B_Fair_Numbers {
             return str;
         }
     }
+    static class Pair {
+        int x;
+        int y;
+    
+        Pair(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+    }
     
     public static void main(String[] args) throws java.lang.Exception {
         int t = in.nextInt();
+        while (t != 0) {
+            t--;
+            int n = in.nextInt();
+            int a[] = ai(n);
+            int b[] = ai(n);
+            ArrayList<Pair> list = new ArrayList<>();
+            for (int i = 0; i < n; i++) {
+                list.add(new Pair(a[i], b[i]));
+            }
+            
+            Collections.sort(list, (p1, p2) -> Integer.compare(p2.x, p1.x)); // Sort descending by `x`
     
-        while (t-- > 0) {
-            long n = in.nextLong();
-            for(long j=n;;j++){
-                long lcm = 1;
-                String s = Long.toString(j);
-                for (int i = 0; i < s.length(); i++) {
-                    char ch = s.charAt(i);
-                    if (ch != '0') {
-                        lcm = lcm(lcm, ch - '0');
-                    }
-                }
-                if(j%lcm == 0){
-                    System.out.println(j);
+            if (Math.max(list.get(0).x, list.get(0).y) > Math.max(list.get(1).x, list.get(1).y)) {
+                System.out.println("Yes");
+                continue;
+            }
+    
+            int bob = Math.max(list.get(0).x, list.get(0).y);
+            boolean found = false;
+    
+            for (int i = 1; i < n; i++) {
+                if (Math.max(list.get(i).x, list.get(i).y) > bob) {
+                    System.out.println("Yes");
+                    found = true;
                     break;
                 }
             }
-            
-            
+    
+            if (!found) {
+                System.out.println("No");
+            }
         }
     }
+    
 }

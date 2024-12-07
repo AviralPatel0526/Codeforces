@@ -1,7 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-public class B_Fair_Numbers {
+public class E_Building_an_Aquarium {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -74,28 +74,37 @@ public class B_Fair_Numbers {
             return str;
         }
     }
-    
+    static long check(long a[],long mid){
+        long ans=0;
+        for(int i=0;i<a.length;i++){
+            if(mid > a[i]){
+                ans+=mid-a[i];
+            }
+        }
+        return ans;
+    }
     public static void main(String[] args) throws java.lang.Exception {
         int t = in.nextInt();
     
-        while (t-- > 0) {
-            long n = in.nextLong();
-            for(long j=n;;j++){
-                long lcm = 1;
-                String s = Long.toString(j);
-                for (int i = 0; i < s.length(); i++) {
-                    char ch = s.charAt(i);
-                    if (ch != '0') {
-                        lcm = lcm(lcm, ch - '0');
-                    }
-                }
-                if(j%lcm == 0){
-                    System.out.println(j);
-                    break;
+        while (t != 0) {
+            t--;
+            int n=in.nextInt();
+            long x=in.nextLong();
+            long a[]=al(n);
+            long l=1;
+            long h=1000000000000l;
+            long res=0;
+            while(l<=h){
+                long mid=(l+h)/2;
+                long ans=check(a, mid);
+                if(ans <= x){
+                    res=mid;
+                    l=mid+1;
+                }else{
+                    h=mid-1;
                 }
             }
-            
-            
+            System.out.println(res);
         }
     }
 }

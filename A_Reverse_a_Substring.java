@@ -1,7 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-public class B_Fair_Numbers {
+public class A_Reverse_a_Substring {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -76,26 +76,28 @@ public class B_Fair_Numbers {
     }
     
     public static void main(String[] args) throws java.lang.Exception {
-        int t = in.nextInt();
+        // int t = in.nextInt();
     
-        while (t-- > 0) {
-            long n = in.nextLong();
-            for(long j=n;;j++){
-                long lcm = 1;
-                String s = Long.toString(j);
-                for (int i = 0; i < s.length(); i++) {
-                    char ch = s.charAt(i);
-                    if (ch != '0') {
-                        lcm = lcm(lcm, ch - '0');
-                    }
-                }
-                if(j%lcm == 0){
-                    System.out.println(j);
+        // while (t != 0) {
+        //     t--;
+            int n=in.nextInt();
+            String s=in.next();
+            int max=0;
+            int pos=-1;
+            for(int i=1;i<n;i++){
+                if(s.charAt(i) < s.charAt(max)){
+                    pos=i;
                     break;
+                }else{
+                    max=i;
                 }
+            }   
+            if(pos == -1){
+                System.out.println("NO");
+            }else{
+                System.out.println("YES");
+                System.out.println((max+1)+" "+(pos+1));
             }
-            
-            
-        }
+        // }
     }
 }

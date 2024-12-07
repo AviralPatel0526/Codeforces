@@ -1,7 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-public class B_Fair_Numbers {
+public class B_Replace_Character {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -78,24 +78,52 @@ public class B_Fair_Numbers {
     public static void main(String[] args) throws java.lang.Exception {
         int t = in.nextInt();
     
-        while (t-- > 0) {
-            long n = in.nextLong();
-            for(long j=n;;j++){
-                long lcm = 1;
-                String s = Long.toString(j);
-                for (int i = 0; i < s.length(); i++) {
-                    char ch = s.charAt(i);
-                    if (ch != '0') {
-                        lcm = lcm(lcm, ch - '0');
-                    }
+        while (t != 0) {
+            t--;
+            int n = in.nextInt();
+            String s = in.next();
+            HashMap<Character, Integer> map = new HashMap<>();
+            for (int i = 0; i < n; i++) {
+                char ch = s.charAt(i);
+                map.put(ch, map.getOrDefault(ch, 0) + 1);
+            }
+            int minf = n + 1;
+            char minc = ' ';
+            int maxf = 0;
+            char maxc = ' ';
+            for (Character key : map.keySet()) {
+                int freq = map.get(key);
+                if (freq > maxf) {
+                    maxf = freq;
+                    maxc = key;
                 }
-                if(j%lcm == 0){
-                    System.out.println(j);
-                    break;
+                if (freq < minf) {
+                    minf = freq;
+                    minc = key;
                 }
             }
-            
-            
+           
+            if(minf == maxf){
+                char arr[]=s.toCharArray();
+                for(int i=0;i<n;i++){
+                    if(arr[i] != arr[0]){
+                        arr[i]=arr[0];
+                        break;
+                    }
+                }
+                System.out.println(new String(arr));
+            }else{ 
+                char arr[]=s.toCharArray();
+                for(int i=0;i<n;i++){
+                    if(arr[i] == minc){
+                        arr[i]=maxc;
+                        break;
+                    }
+                }
+                System.out.println(new String(arr));
+            }
+
         }
+        
     }
 }

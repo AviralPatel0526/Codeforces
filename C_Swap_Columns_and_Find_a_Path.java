@@ -1,7 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-public class B_Fair_Numbers {
+public class C_Swap_Columns_and_Find_a_Path {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -78,24 +78,22 @@ public class B_Fair_Numbers {
     public static void main(String[] args) throws java.lang.Exception {
         int t = in.nextInt();
     
-        while (t-- > 0) {
-            long n = in.nextLong();
-            for(long j=n;;j++){
-                long lcm = 1;
-                String s = Long.toString(j);
-                for (int i = 0; i < s.length(); i++) {
-                    char ch = s.charAt(i);
-                    if (ch != '0') {
-                        lcm = lcm(lcm, ch - '0');
+        while (t != 0) {
+            t--;
+            int n=in.nextInt();
+            int a[]=ai(n);
+            int b[]=ai(n);
+            int ans=Integer.MIN_VALUE;
+            for(int i=0;i<n;i++){
+                int sum=a[i]+b[i];
+                for(int j=0;j<n;j++){
+                    if(j!=i){
+                        sum+=Math.max(a[j],b[j]);
                     }
                 }
-                if(j%lcm == 0){
-                    System.out.println(j);
-                    break;
-                }
+                ans=Math.max(ans,sum);
             }
-            
-            
+            System.out.println(ans);
         }
     }
 }

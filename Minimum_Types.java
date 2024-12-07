@@ -1,7 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-public class B_Fair_Numbers {
+public class Minimum_Types {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -78,24 +78,34 @@ public class B_Fair_Numbers {
     public static void main(String[] args) throws java.lang.Exception {
         int t = in.nextInt();
     
-        while (t-- > 0) {
-            long n = in.nextLong();
-            for(long j=n;;j++){
-                long lcm = 1;
-                String s = Long.toString(j);
-                for (int i = 0; i < s.length(); i++) {
-                    char ch = s.charAt(i);
-                    if (ch != '0') {
-                        lcm = lcm(lcm, ch - '0');
-                    }
-                }
-                if(j%lcm == 0){
-                    System.out.println(j);
+        while (t != 0) {
+            t--;
+            int n=in.nextInt();
+            long x=in.nextLong();
+            long a[]=al(n);
+            long b[]=al(n);
+            long m[]=new long[n];
+            for(int i=0;i<n;i++){
+                m[i]=a[i]*b[i];
+            }
+            Arrays.sort(m);
+            long sum=0;
+            int cnt=0;
+            boolean flag=true;
+            for(int i=n-1;i>=0;i--){
+                sum+=m[i];
+                cnt++;
+                if(sum >= x){
+                    flag=false;
                     break;
                 }
             }
-            
-            
+            if(flag){
+                System.out.println(-1);
+            }else{
+                System.out.println(cnt);
+            }
+           
         }
     }
 }

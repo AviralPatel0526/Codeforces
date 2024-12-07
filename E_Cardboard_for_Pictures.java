@@ -1,7 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-public class B_Fair_Numbers {
+public class E_Cardboard_for_Pictures {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -74,28 +74,36 @@ public class B_Fair_Numbers {
             return str;
         }
     }
+    static long check(long[] a, long mid, long c) {
+        long sum = 0;
+        for (int i = 0; i < a.length; i++) {
+            long totalSize = a[i] + 2 * mid;
+            sum += totalSize * totalSize;
+            if (sum > c) return sum;
+        }
+        return sum;
+    }
     
     public static void main(String[] args) throws java.lang.Exception {
         int t = in.nextInt();
-    
         while (t-- > 0) {
-            long n = in.nextLong();
-            for(long j=n;;j++){
-                long lcm = 1;
-                String s = Long.toString(j);
-                for (int i = 0; i < s.length(); i++) {
-                    char ch = s.charAt(i);
-                    if (ch != '0') {
-                        lcm = lcm(lcm, ch - '0');
-                    }
-                }
-                if(j%lcm == 0){
-                    System.out.println(j);
+            int n = in.nextInt();
+            long c = in.nextLong();
+            long[] a = al(n);
+            long l = 1, h = 1000000000, ans = -1;
+            while (l <= h) {
+                long mid = (l + h) / 2;
+                if (check(a, mid, c) == c) {
+                    ans = mid;
                     break;
+                } else if (check(a, mid, c) > c) {
+                    h = mid - 1;
+                } else {
+                    l = mid + 1;
                 }
             }
-            
-            
+            System.out.println(ans);
         }
     }
+    
 }

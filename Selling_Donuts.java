@@ -1,7 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-public class B_Fair_Numbers {
+public class Selling_Donuts {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -78,24 +78,23 @@ public class B_Fair_Numbers {
     public static void main(String[] args) throws java.lang.Exception {
         int t = in.nextInt();
     
-        while (t-- > 0) {
-            long n = in.nextLong();
-            for(long j=n;;j++){
-                long lcm = 1;
-                String s = Long.toString(j);
-                for (int i = 0; i < s.length(); i++) {
-                    char ch = s.charAt(i);
-                    if (ch != '0') {
-                        lcm = lcm(lcm, ch - '0');
-                    }
-                }
-                if(j%lcm == 0){
-                    System.out.println(j);
-                    break;
+        while (t != 0) {
+            t--;
+            int n=in.nextInt();
+            int m=in.nextInt();
+            int a[]=ai(n);
+            int b[]=ai(m);
+            int ans=0;
+            HashMap<Integer,Integer> map=new HashMap<>();
+            for(int i=0;i<m;i++){
+                map.put(b[i],map.getOrDefault(b[i], 0)+1);
+            }
+            for(Integer key:map.keySet()){
+                if(map.get(key) > a[key-1]){
+                    ans+=map.get(key)-a[key-1];
                 }
             }
-            
-            
+            System.out.println(ans);
         }
     }
 }

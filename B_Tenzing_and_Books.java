@@ -1,7 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-public class B_Fair_Numbers {
+public class B_Tenzing_and_Books {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -78,24 +78,37 @@ public class B_Fair_Numbers {
     public static void main(String[] args) throws java.lang.Exception {
         int t = in.nextInt();
     
-        while (t-- > 0) {
-            long n = in.nextLong();
-            for(long j=n;;j++){
-                long lcm = 1;
-                String s = Long.toString(j);
-                for (int i = 0; i < s.length(); i++) {
-                    char ch = s.charAt(i);
-                    if (ch != '0') {
-                        lcm = lcm(lcm, ch - '0');
-                    }
-                }
-                if(j%lcm == 0){
-                    System.out.println(j);
+        while (t != 0) {
+            t--;
+            int n=in.nextInt();
+            int x=in.nextInt();
+            int a[]=ai(n);
+            int b[]=ai(n);
+            int c[]=ai(n);
+            int s=0;
+            for(int i=0;i<n;i++){
+                if((a[i]|x) != x){
                     break;
                 }
+                s|=a[i];
             }
-            
-            
+            for(int i=0;i<n;i++){
+                if((b[i]|x) != x){
+                    break;
+                }
+                s|=b[i];
+            }
+            for(int i=0;i<n;i++){
+                if((c[i]|x) != x){
+                    break;
+                }
+                s|=c[i];
+            }
+            if(s == x){
+                System.out.println("Yes");
+            }else{
+                System.out.println("No");
+            }
         }
     }
 }

@@ -1,7 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-public class B_Fair_Numbers {
+public class Permutation_Mod_K {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -78,24 +78,34 @@ public class B_Fair_Numbers {
     public static void main(String[] args) throws java.lang.Exception {
         int t = in.nextInt();
     
-        while (t-- > 0) {
-            long n = in.nextLong();
-            for(long j=n;;j++){
-                long lcm = 1;
-                String s = Long.toString(j);
-                for (int i = 0; i < s.length(); i++) {
-                    char ch = s.charAt(i);
-                    if (ch != '0') {
-                        lcm = lcm(lcm, ch - '0');
+        while (t != 0) {
+            t--;
+            int n=in.nextInt();
+            int k=in.nextInt();
+            int a[]=new int[n];
+            if(k == 1 || (k == 2 && n%2 != 0)){
+                System.out.println(-1);
+            }else{
+                for(int i=0;i<n-1;i++){
+                    a[i]=i+2;
+                }
+                a[n-1]=1;
+                if(n%k == 1){
+                    for(int i=0;i<n;i++){
+                        if(a[i]%k != 1 && (i+1)%k != 1){
+                            int temp=a[i];
+                            a[i]=1;
+                            a[n-1]=temp;
+                            break;
+                        }
                     }
+                    
                 }
-                if(j%lcm == 0){
-                    System.out.println(j);
-                    break;
+                for(int i=0;i<n;i++){
+                    System.out.print(a[i]+" ");
                 }
+                System.out.println();
             }
-            
-            
         }
     }
 }

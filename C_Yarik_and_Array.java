@@ -1,7 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-public class B_Fair_Numbers {
+public class C_Yarik_and_Array {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -78,24 +78,37 @@ public class B_Fair_Numbers {
     public static void main(String[] args) throws java.lang.Exception {
         int t = in.nextInt();
     
-        while (t-- > 0) {
-            long n = in.nextLong();
-            for(long j=n;;j++){
-                long lcm = 1;
-                String s = Long.toString(j);
-                for (int i = 0; i < s.length(); i++) {
-                    char ch = s.charAt(i);
-                    if (ch != '0') {
-                        lcm = lcm(lcm, ch - '0');
-                    }
+        while (t != 0) {
+            t--;
+            int n=in.nextInt();
+            int a[]=ai(n);
+            int ans=0;
+            int sum=0;
+            int allneg=Integer.MIN_VALUE;
+            boolean flag=true;
+            for(int i=0;i<n;i++){
+                if(a[i] > 0){
+                    flag=false;
                 }
-                if(j%lcm == 0){
-                    System.out.println(j);
-                    break;
-                }
+                allneg=Math.max(a[i],allneg);
             }
-            
-            
+            if(flag){
+                System.out.println(allneg);
+                continue;
+            }
+            for(int i=0;i<n;i++){
+                sum+=a[i];
+                if(i > 0){
+                    if(Math.abs(a[i]%2) == Math.abs(a[i-1]%2)){
+                        sum=a[i];
+                    }
+                } 
+                if(sum < 0){
+                    sum=0;
+                }
+                ans=Math.max(ans,sum);
+            }
+            System.out.println(ans);
         }
     }
 }

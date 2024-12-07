@@ -1,7 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-public class B_Fair_Numbers {
+public class A_Johnny_and_Ancient_Computer {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -78,24 +78,38 @@ public class B_Fair_Numbers {
     public static void main(String[] args) throws java.lang.Exception {
         int t = in.nextInt();
     
-        while (t-- > 0) {
-            long n = in.nextLong();
-            for(long j=n;;j++){
-                long lcm = 1;
-                String s = Long.toString(j);
-                for (int i = 0; i < s.length(); i++) {
-                    char ch = s.charAt(i);
-                    if (ch != '0') {
-                        lcm = lcm(lcm, ch - '0');
-                    }
-                }
-                if(j%lcm == 0){
-                    System.out.println(j);
+        while (t != 0) {
+            t--;
+            long a=in.nextLong();
+            long b=in.nextLong();
+            if(a > b){
+                long temp=a;
+                a=b;
+                b=temp;
+            }
+            String as = Long.toBinaryString(a);
+            String bs = Long.toBinaryString(b);
+            // System.out.println(as);
+            // System.out.println(bs);
+            boolean flag=true;
+            for(int i=0;i<as.length();i++){
+                if(as.charAt(i) != bs.charAt(i)){
+                    flag=false;
                     break;
                 }
             }
-            
-            
+            for(int j=as.length();j<bs.length();j++){
+                if(bs.charAt(j) != '0'){
+                    flag=false;
+                    break;
+                }
+            }
+            if(flag){
+                double diff=(double)(bs.length()-as.length());
+                System.out.println((int)Math.ceil(diff/3));
+            }else{
+                System.out.println(-1);
+            }
         }
     }
 }
