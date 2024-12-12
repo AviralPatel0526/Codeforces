@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "E_Interview",
+            "request": "launch",
+            "mainClass": "E_Interview",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
             "name": "B_Valerii_Against_Everyone",
             "request": "launch",
             "mainClass": "B_Valerii_Against_Everyone",
