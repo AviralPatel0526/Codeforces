@@ -1,7 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-public class D_Three_Activities {
+public class B_Make_Almost_Equal_With_Mod {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -74,47 +74,27 @@ public class D_Three_Activities {
             return str;
         }
     }
-    static class Pair {
-        int x;
-        int idx;
-        Pair(int x,int idx){
-            this.x=x;
-            this.idx=idx;
-        }
-    }
+    
     public static void main(String[] args) throws java.lang.Exception {
         int t = in.nextInt();
     
         while (t != 0) {
             t--;
             int n=in.nextInt();
-            int a[]=ai(n);
-            int b[]=ai(n);
-            int c[]=ai(n);
-            ArrayList<Pair> lista=new ArrayList<>();
-            ArrayList<Pair> listb=new ArrayList<>();
-            ArrayList<Pair> listc=new ArrayList<>();
-            for(int i=0;i<n;i++){
-                lista.add(new Pair(a[i], i));
-                listb.add(new Pair(b[i], i));
-                listc.add(new Pair(c[i], i));
-            }
-            Collections.sort(lista,(p1,p2)->p2.x-p1.x);
-            Collections.sort(listb,(p1,p2)->p2.x-p1.x);
-            Collections.sort(listc,(p1,p2)->p2.x-p1.x);
-            int max=Integer.MIN_VALUE;
-            for(int i=0;i<3;i++){
-                for(int j=0;j<3;j++){
-                    if(listb.get(j).idx != lista.get(i).idx){
-                        for(int k=0;k<3;k++){
-                            if(listc.get(k).idx != lista.get(i).idx && listc.get(k).idx != listb.get(j).idx){
-                                max=Math.max(max,lista.get(i).x+listb.get(j).x+listc.get(k).x);
-                            }
-                        }
-                    }
+            long a[]=al(n);
+            long ans=2;
+            for(int i=1;i<=60;i++){
+                long divide=(long)Math.pow(2,i);
+                HashSet<Long> set=new HashSet<>();
+                for(int j=0;j<n;j++){
+                    set.add(a[j]%divide);
+                }
+                if(set.size() == 2){
+                    ans=divide;
+                    break;
                 }
             }
-            System.out.println(max);
+            System.out.println(ans);
         }
     }
 }

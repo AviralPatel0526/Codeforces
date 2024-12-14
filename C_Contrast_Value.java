@@ -1,7 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-public class D_Three_Activities {
+public class C_Contrast_Value {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -74,13 +74,15 @@ public class D_Three_Activities {
             return str;
         }
     }
-    static class Pair {
-        int x;
-        int idx;
-        Pair(int x,int idx){
-            this.x=x;
-            this.idx=idx;
+    static int unique(int[] a, int n) {
+        int idx = 0;
+        for (int i = 1; i < n; i++) {
+            if (a[i] != a[idx]) {
+                idx++;
+                a[idx] = a[i];
+            }
         }
+        return idx + 1;
     }
     public static void main(String[] args) throws java.lang.Exception {
         int t = in.nextInt();
@@ -89,32 +91,13 @@ public class D_Three_Activities {
             t--;
             int n=in.nextInt();
             int a[]=ai(n);
-            int b[]=ai(n);
-            int c[]=ai(n);
-            ArrayList<Pair> lista=new ArrayList<>();
-            ArrayList<Pair> listb=new ArrayList<>();
-            ArrayList<Pair> listc=new ArrayList<>();
-            for(int i=0;i<n;i++){
-                lista.add(new Pair(a[i], i));
-                listb.add(new Pair(b[i], i));
-                listc.add(new Pair(c[i], i));
+            n = unique(a, n);
+            int ans = n;
+            for (int i = 0; i + 2 < n; i++) {
+                if (a[i] < a[i + 1] && a[i + 1] < a[i + 2]) ans--;
+                if (a[i] > a[i + 1] && a[i + 1] > a[i + 2]) ans--;
             }
-            Collections.sort(lista,(p1,p2)->p2.x-p1.x);
-            Collections.sort(listb,(p1,p2)->p2.x-p1.x);
-            Collections.sort(listc,(p1,p2)->p2.x-p1.x);
-            int max=Integer.MIN_VALUE;
-            for(int i=0;i<3;i++){
-                for(int j=0;j<3;j++){
-                    if(listb.get(j).idx != lista.get(i).idx){
-                        for(int k=0;k<3;k++){
-                            if(listc.get(k).idx != lista.get(i).idx && listc.get(k).idx != listb.get(j).idx){
-                                max=Math.max(max,lista.get(i).x+listb.get(j).x+listc.get(k).x);
-                            }
-                        }
-                    }
-                }
-            }
-            System.out.println(max);
+            System.out.println(ans);
         }
     }
 }

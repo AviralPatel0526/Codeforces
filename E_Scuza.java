@@ -1,7 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-public class D_Three_Activities {
+public class E_Scuza {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -74,13 +74,20 @@ public class D_Three_Activities {
             return str;
         }
     }
-    static class Pair {
-        int x;
-        int idx;
-        Pair(int x,int idx){
-            this.x=x;
-            this.idx=idx;
+    static int ub(long max[],long x){
+        int l=0;
+        int h=max.length-1;
+        int ans=max.length;
+        while(l <= h){
+            int mid=(l+h)/2;
+            if(max[mid] > x){
+                ans=mid;
+                h=mid-1;
+            }else{
+                l=mid+1;
+            }
         }
+        return ans;
     }
     public static void main(String[] args) throws java.lang.Exception {
         int t = in.nextInt();
@@ -88,33 +95,33 @@ public class D_Three_Activities {
         while (t != 0) {
             t--;
             int n=in.nextInt();
-            int a[]=ai(n);
-            int b[]=ai(n);
-            int c[]=ai(n);
-            ArrayList<Pair> lista=new ArrayList<>();
-            ArrayList<Pair> listb=new ArrayList<>();
-            ArrayList<Pair> listc=new ArrayList<>();
-            for(int i=0;i<n;i++){
-                lista.add(new Pair(a[i], i));
-                listb.add(new Pair(b[i], i));
-                listc.add(new Pair(c[i], i));
+            int q=in.nextInt();
+            long a[]=al(n);
+            long b[]=al(q);
+            long pre[]=new long[n];
+            long max[]=new long[n];
+            max[0]=a[0];
+            long m=a[0];
+            pre[0]=a[0];
+            for(int i=1;i<n;i++){
+                pre[i]=pre[i-1]+a[i];
+                m=Math.max(a[i],m);
+                max[i]=m;
             }
-            Collections.sort(lista,(p1,p2)->p2.x-p1.x);
-            Collections.sort(listb,(p1,p2)->p2.x-p1.x);
-            Collections.sort(listc,(p1,p2)->p2.x-p1.x);
-            int max=Integer.MIN_VALUE;
-            for(int i=0;i<3;i++){
-                for(int j=0;j<3;j++){
-                    if(listb.get(j).idx != lista.get(i).idx){
-                        for(int k=0;k<3;k++){
-                            if(listc.get(k).idx != lista.get(i).idx && listc.get(k).idx != listb.get(j).idx){
-                                max=Math.max(max,lista.get(i).x+listb.get(j).x+listc.get(k).x);
-                            }
-                        }
-                    }
+
+            long ans[]=new long[q];
+            for(int i=0;i<q;i++){
+                int idx=ub(max, b[i])-1;
+                if(idx == -1){
+                    ans[i]=0;
+                    continue;
                 }
+                ans[i]=pre[idx];
             }
-            System.out.println(max);
+            for(int i=0;i<q;i++){
+                System.out.print(ans[i]+" ");
+            }
+            System.out.println();
         }
     }
 }

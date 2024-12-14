@@ -1,7 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-public class D_Three_Activities {
+public class C_Virus {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -74,47 +74,38 @@ public class D_Three_Activities {
             return str;
         }
     }
-    static class Pair {
-        int x;
-        int idx;
-        Pair(int x,int idx){
-            this.x=x;
-            this.idx=idx;
-        }
-    }
+    
     public static void main(String[] args) throws java.lang.Exception {
         int t = in.nextInt();
     
         while (t != 0) {
             t--;
             int n=in.nextInt();
-            int a[]=ai(n);
-            int b[]=ai(n);
-            int c[]=ai(n);
-            ArrayList<Pair> lista=new ArrayList<>();
-            ArrayList<Pair> listb=new ArrayList<>();
-            ArrayList<Pair> listc=new ArrayList<>();
-            for(int i=0;i<n;i++){
-                lista.add(new Pair(a[i], i));
-                listb.add(new Pair(b[i], i));
-                listc.add(new Pair(c[i], i));
+            int m=in.nextInt();
+            int a[]=ai(m);
+            ArrayList<Integer> list=new ArrayList<>();
+            Arrays.sort(a);
+            list.add(a[0]-1+n-a[m-1]);
+            for(int i=1;i<m;i++){
+                list.add(a[i]-a[i-1]-1);
             }
-            Collections.sort(lista,(p1,p2)->p2.x-p1.x);
-            Collections.sort(listb,(p1,p2)->p2.x-p1.x);
-            Collections.sort(listc,(p1,p2)->p2.x-p1.x);
-            int max=Integer.MIN_VALUE;
-            for(int i=0;i<3;i++){
-                for(int j=0;j<3;j++){
-                    if(listb.get(j).idx != lista.get(i).idx){
-                        for(int k=0;k<3;k++){
-                            if(listc.get(k).idx != lista.get(i).idx && listc.get(k).idx != listb.get(j).idx){
-                                max=Math.max(max,lista.get(i).x+listb.get(j).x+listc.get(k).x);
-                            }
-                        }
-                    }
+            Collections.sort(list,(x,y)->y-x);
+            int cnt=0;
+            int gap=0;
+            for(int i=0;i<list.size();i++){
+                int num=list.get(i)-2*gap;
+                if(num <= 0){
+                    break;
                 }
+                num--;
+                gap+=2;
+                if(num == 0){
+                    cnt+=1;
+                    break;
+                }
+                cnt+=num;
             }
-            System.out.println(max);
+            System.out.println(n-cnt);
         }
     }
 }

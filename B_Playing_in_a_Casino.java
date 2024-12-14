@@ -1,7 +1,8 @@
 import java.util.*;
 import java.lang.*;
+import java.lang.reflect.Array;
 import java.io.*;
-public class D_Three_Activities {
+public class B_Playing_in_a_Casino {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -74,47 +75,47 @@ public class D_Three_Activities {
             return str;
         }
     }
-    static class Pair {
-        int x;
-        int idx;
-        Pair(int x,int idx){
-            this.x=x;
-            this.idx=idx;
-        }
-    }
+    
     public static void main(String[] args) throws java.lang.Exception {
         int t = in.nextInt();
     
         while (t != 0) {
             t--;
-            int n=in.nextInt();
-            int a[]=ai(n);
-            int b[]=ai(n);
-            int c[]=ai(n);
-            ArrayList<Pair> lista=new ArrayList<>();
-            ArrayList<Pair> listb=new ArrayList<>();
-            ArrayList<Pair> listc=new ArrayList<>();
-            for(int i=0;i<n;i++){
-                lista.add(new Pair(a[i], i));
-                listb.add(new Pair(b[i], i));
-                listc.add(new Pair(c[i], i));
-            }
-            Collections.sort(lista,(p1,p2)->p2.x-p1.x);
-            Collections.sort(listb,(p1,p2)->p2.x-p1.x);
-            Collections.sort(listc,(p1,p2)->p2.x-p1.x);
-            int max=Integer.MIN_VALUE;
-            for(int i=0;i<3;i++){
-                for(int j=0;j<3;j++){
-                    if(listb.get(j).idx != lista.get(i).idx){
-                        for(int k=0;k<3;k++){
-                            if(listc.get(k).idx != lista.get(i).idx && listc.get(k).idx != listb.get(j).idx){
-                                max=Math.max(max,lista.get(i).x+listb.get(j).x+listc.get(k).x);
-                            }
-                        }
-                    }
+            int n = in.nextInt();
+            int m = in.nextInt();
+            long a[][] = new long[n][m];
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < m; j++) {
+                    a[i][j] = in.nextLong();
                 }
             }
-            System.out.println(max);
+            ArrayList<ArrayList<Long>> list = new ArrayList<>();
+            long pre[] = new long[m];
+            for (int i = 0; i < m; i++) {
+                ArrayList<Long> temp = new ArrayList<>();
+                for (int j = 0; j < n; j++) {
+                    temp.add(a[j][i]);
+                }
+                Collections.sort(temp);
+                list.add(new ArrayList<>(temp));    
+            }
+            for (int i = 0; i < list.size(); i++) {
+                ArrayList<Long> temp = list.get(i);
+                for (int j = 0; j < temp.size(); j++) {
+                    pre[i] += temp.get(j); 
+                }
+            }
+            long ans = 0;
+            for (int i = 0; i < list.size(); i++) {
+                ArrayList<Long> temp = list.get(i);
+                long sum = pre[i];
+                for (int j = 0; j < temp.size(); j++) {
+                    ans += sum - temp.get(j) * (temp.size() - j);
+                    sum -= temp.get(j); 
+                }
+            }
+            System.out.println(ans);
         }
-    }
+        
+    }        
 }

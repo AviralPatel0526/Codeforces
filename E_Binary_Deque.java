@@ -1,7 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-public class D_Three_Activities {
+public class E_Binary_Deque {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -74,47 +74,48 @@ public class D_Three_Activities {
             return str;
         }
     }
-    static class Pair {
-        int x;
-        int idx;
-        Pair(int x,int idx){
-            this.x=x;
-            this.idx=idx;
+    static int f(int a[], int sum, int n) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        map.put(0, -1); // Base case: To handle subarrays starting from index 0
+        int cursum = 0;
+        int maxLen = 0; // Length of the largest subarray with the given sum
+    
+        for (int i = 0; i < n; i++) {
+            cursum += a[i];
+    
+            // Check if we've seen a cumulative sum such that cursum - sum == previous_cursum
+            if (map.containsKey(cursum - sum)) {
+                maxLen = Math.max(maxLen, i - map.get(cursum - sum));
+            }
+    
+            // Add the current cumulative sum to the map if not already present
+            map.putIfAbsent(cursum, i);
         }
+    
+        return maxLen; // Largest subarray length with sum == `sum`
     }
+    
+
     public static void main(String[] args) throws java.lang.Exception {
         int t = in.nextInt();
     
         while (t != 0) {
             t--;
             int n=in.nextInt();
+            int sum=in.nextInt();
             int a[]=ai(n);
-            int b[]=ai(n);
-            int c[]=ai(n);
-            ArrayList<Pair> lista=new ArrayList<>();
-            ArrayList<Pair> listb=new ArrayList<>();
-            ArrayList<Pair> listc=new ArrayList<>();
+            int cnt=0;
             for(int i=0;i<n;i++){
-                lista.add(new Pair(a[i], i));
-                listb.add(new Pair(b[i], i));
-                listc.add(new Pair(c[i], i));
-            }
-            Collections.sort(lista,(p1,p2)->p2.x-p1.x);
-            Collections.sort(listb,(p1,p2)->p2.x-p1.x);
-            Collections.sort(listc,(p1,p2)->p2.x-p1.x);
-            int max=Integer.MIN_VALUE;
-            for(int i=0;i<3;i++){
-                for(int j=0;j<3;j++){
-                    if(listb.get(j).idx != lista.get(i).idx){
-                        for(int k=0;k<3;k++){
-                            if(listc.get(k).idx != lista.get(i).idx && listc.get(k).idx != listb.get(j).idx){
-                                max=Math.max(max,lista.get(i).x+listb.get(j).x+listc.get(k).x);
-                            }
-                        }
-                    }
+                if(a[i] == 1){
+                    cnt++;
                 }
             }
-            System.out.println(max);
+            if(cnt < sum){
+                System.out.println(-1);
+                continue;
+            }
+            int ans=f(a,sum,n);
+            System.out.println(n-ans);
         }
     }
 }

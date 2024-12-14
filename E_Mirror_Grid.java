@@ -1,7 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-public class D_Three_Activities {
+public class E_Mirror_Grid {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -74,47 +74,57 @@ public class D_Three_Activities {
             return str;
         }
     }
-    static class Pair {
-        int x;
-        int idx;
-        Pair(int x,int idx){
-            this.x=x;
-            this.idx=idx;
+    static ArrayList<String> spiral(char ch[][], int n) {
+        int sr = 0, sc = 0, er = n - 1, ec = n - 1;
+        ArrayList<String> temp = new ArrayList<>();
+        while (sr <= er && sc <= ec) {
+            StringBuilder sb = new StringBuilder();
+            for (int i = sc; i <= ec; i++) sb.append(ch[sr][i]);
+            sr++;
+            for (int i = sr; i <= er; i++) sb.append(ch[i][ec]);
+            ec--;
+            if (sr <= er) {
+                for (int i = ec; i >= sc; i--) sb.append(ch[er][i]);
+                er--;
+            }
+            if (sc <= ec) {
+                for (int i = er; i >= sr; i--) sb.append(ch[i][sc]);
+                sc++;
+            }
+            temp.add(sb.toString());
         }
+        return temp;
     }
+    
     public static void main(String[] args) throws java.lang.Exception {
         int t = in.nextInt();
-    
-        while (t != 0) {
-            t--;
-            int n=in.nextInt();
-            int a[]=ai(n);
-            int b[]=ai(n);
-            int c[]=ai(n);
-            ArrayList<Pair> lista=new ArrayList<>();
-            ArrayList<Pair> listb=new ArrayList<>();
-            ArrayList<Pair> listc=new ArrayList<>();
-            for(int i=0;i<n;i++){
-                lista.add(new Pair(a[i], i));
-                listb.add(new Pair(b[i], i));
-                listc.add(new Pair(c[i], i));
+        while (t-- > 0) {
+            int n = in.nextInt();
+            char[][] ch = new char[n][n];
+            for (int i = 0; i < n; i++) {
+                String s = in.next();
+                for (int j = 0; j < n; j++) ch[i][j] = s.charAt(j);
             }
-            Collections.sort(lista,(p1,p2)->p2.x-p1.x);
-            Collections.sort(listb,(p1,p2)->p2.x-p1.x);
-            Collections.sort(listc,(p1,p2)->p2.x-p1.x);
-            int max=Integer.MIN_VALUE;
-            for(int i=0;i<3;i++){
-                for(int j=0;j<3;j++){
-                    if(listb.get(j).idx != lista.get(i).idx){
-                        for(int k=0;k<3;k++){
-                            if(listc.get(k).idx != lista.get(i).idx && listc.get(k).idx != listb.get(j).idx){
-                                max=Math.max(max,lista.get(i).x+listb.get(j).x+listc.get(k).x);
-                            }
-                        }
+            ArrayList<String> list = spiral(ch, n);
+            int ans = 0;
+            int jump = n - 1;
+            for (int i = 0; i < list.size(); i++) {
+                String s = list.get(i);
+                if (s.length() >= 4) {
+                    for (int j = 0; j < jump; j++) {
+                        int cnt0 = 0;
+                        if (s.charAt(j) == '0') cnt0++;
+                        if (s.charAt(j + jump) == '0') cnt0++;
+                        if (s.charAt(j + 2 * jump) == '0') cnt0++;
+                        if (s.charAt(j + 3 * jump) == '0') cnt0++;
+                        ans += Math.min(cnt0, 4 - cnt0);
                     }
                 }
+                jump-=2;
             }
-            System.out.println(max);
+            System.out.println(ans);
         }
     }
+    
+    
 }

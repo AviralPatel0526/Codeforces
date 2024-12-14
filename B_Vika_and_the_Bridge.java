@@ -1,7 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-public class D_Three_Activities {
+public class B_Vika_and_the_Bridge {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -74,47 +74,75 @@ public class D_Three_Activities {
             return str;
         }
     }
-    static class Pair {
-        int x;
-        int idx;
-        Pair(int x,int idx){
-            this.x=x;
-            this.idx=idx;
+    static boolean f(HashMap<Integer, ArrayList<Integer>> map, int mid, int n) {
+        for (Integer key : map.keySet()) {
+            ArrayList<Integer> temp = map.get(key);
+    
+            int cnt = 0;
+            boolean flag = true;
+            temp.add(n+1);
+            for (int i = 0; i < temp.size(); i++) { 
+                int maxg;
+                if(i == 0){
+                    maxg=temp.get(i);
+                }else{
+                    maxg= temp.get(i) - temp.get(i - 1);
+                }
+
+    
+                if (maxg > mid) {
+                    if (cnt == 0) {
+                        int newg = (maxg + 1) / 2;
+                        if (newg > mid) {
+                            flag = false;
+                            break;
+                        }
+                        cnt++;
+                    } else {
+                        flag = false;
+                        break;
+                    }
+                }
+            }
+    
+            if (flag) {
+                return true;
+            }
         }
+        return false;
     }
+    
     public static void main(String[] args) throws java.lang.Exception {
         int t = in.nextInt();
     
         while (t != 0) {
             t--;
-            int n=in.nextInt();
-            int a[]=ai(n);
-            int b[]=ai(n);
-            int c[]=ai(n);
-            ArrayList<Pair> lista=new ArrayList<>();
-            ArrayList<Pair> listb=new ArrayList<>();
-            ArrayList<Pair> listc=new ArrayList<>();
-            for(int i=0;i<n;i++){
-                lista.add(new Pair(a[i], i));
-                listb.add(new Pair(b[i], i));
-                listc.add(new Pair(c[i], i));
+            int n = in.nextInt();
+            int k = in.nextInt();
+            int a[] = ai(n);
+            HashMap<Integer, ArrayList<Integer>> map = new HashMap<>();
+    
+            for (int i = 0; i < n; i++) {
+                map.computeIfAbsent(a[i], key -> new ArrayList<>()).add(i+1);
             }
-            Collections.sort(lista,(p1,p2)->p2.x-p1.x);
-            Collections.sort(listb,(p1,p2)->p2.x-p1.x);
-            Collections.sort(listc,(p1,p2)->p2.x-p1.x);
-            int max=Integer.MIN_VALUE;
-            for(int i=0;i<3;i++){
-                for(int j=0;j<3;j++){
-                    if(listb.get(j).idx != lista.get(i).idx){
-                        for(int k=0;k<3;k++){
-                            if(listc.get(k).idx != lista.get(i).idx && listc.get(k).idx != listb.get(j).idx){
-                                max=Math.max(max,lista.get(i).x+listb.get(j).x+listc.get(k).x);
-                            }
-                        }
-                    }
+    
+            int l = 0;
+            int h = n+1;
+            int ans = 0;
+    
+            while (l <= h) {
+                int mid = (l + h) / 2;
+                if (f(map, mid, n)) {
+                    ans = mid;
+                    h = mid - 1;
+                } else {
+                    l = mid + 1;
                 }
             }
-            System.out.println(max);
+    
+            System.out.println(ans-1);
         }
     }
+    
+    
 }
