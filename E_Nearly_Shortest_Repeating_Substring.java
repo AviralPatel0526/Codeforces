@@ -1,8 +1,8 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-import java.util.Stack;
-public class C_Move_Brackets {
+
+public class E_Nearly_Shortest_Repeating_Substring {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -13,35 +13,38 @@ public class C_Move_Brackets {
         }
         return a;
     }
-    
+
     // LCM Method
     static long lcm(long a, long b) {
         return (a / gcd(a, b)) * b;
     }
-    
+
     static FastReader in = new FastReader();
+
     // input of int array
     static int[] ai(int n) {
         int[] arr = new int[n];
-        for (int i = 0; i < n; i++) arr[i] = in.nextInt();
+        for (int i = 0; i < n; i++)
+            arr[i] = in.nextInt();
         return arr;
     }
-    
+
     // input of long array
     static long[] al(int n) {
         long[] arr = new long[n];
-        for (int i = 0; i < n; i++) arr[i] = in.nextLong();
+        for (int i = 0; i < n; i++)
+            arr[i] = in.nextLong();
         return arr;
     }
-    
+
     static class FastReader {
         BufferedReader br;
         StringTokenizer st;
-    
+
         public FastReader() {
             br = new BufferedReader(new InputStreamReader(System.in));
         }
-    
+
         String next() {
             while (st == null || !st.hasMoreTokens()) {
                 try {
@@ -52,19 +55,19 @@ public class C_Move_Brackets {
             }
             return st.nextToken();
         }
-    
+
         int nextInt() {
             return Integer.parseInt(next());
         }
-    
+
         long nextLong() {
             return Long.parseLong(next());
         }
-    
+
         double nextDouble() {
             return Double.parseDouble(next());
         }
-    
+
         String nextLine() {
             String str = "";
             try {
@@ -75,31 +78,65 @@ public class C_Move_Brackets {
             return str;
         }
     }
+    static boolean check(char a[], int i, int j, int gap) {
+        char[] temp = a.clone();  
+        temp[i] = temp[j];
+        int q = 0;
+        int w = gap;
+    
+        while (w < a.length) {
+            if (temp[q] != temp[w]) {
+                return false;
+            }
+            q++;
+            w++;
+        }
+        return true;
+    }
+    
+    static boolean f(char ch[], int n, int gap) {
+        int i = 0;
+        int j = gap;
+    
+        // Create two clones of the original array
+        char[] temp = ch.clone();
+        char[] temp2 = ch.clone();
+    
+        while (j < n) {
+            if (ch[i] != ch[j]) {
+                if (check(temp, i, j, gap) || check(temp2, j, i, gap)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            i++;
+            j++;
+        }
+        return true;
+    }
     
     public static void main(String[] args) throws java.lang.Exception {
         int t = in.nextInt();
     
         while (t != 0) {
             t--;
-            int n=in.nextInt();
-            String s=in.next();
-            int cnt=0;
-            Stack<Character> st=new Stack<>();
-            for(int i=0;i<n;i++){
-                char ch=s.charAt(i);
-                if(ch == '('){
-                    st.push(ch);
-                }else{
-                    if(st.isEmpty()){
-                        continue;
-                    }else{
-                        cnt++;
-                        st.pop();
+            int n = in.nextInt();
+            String s = in.next();
+            char ch[] = s.toCharArray();
+            int ans = n;
+    
+            for (int i = 1; i <= n; i++) {
+                if (n % i == 0) {
+                    if (f(ch, n, i)) {
+                        ans = i;
+                        break;
                     }
                 }
             }
-            int diff=n-2*cnt;
-            System.out.println(diff/2);
+            
+            System.out.println(ans);
         }
     }
+    
 }

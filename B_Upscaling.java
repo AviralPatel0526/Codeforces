@@ -1,8 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-import java.util.Stack;
-public class C_Move_Brackets {
+public class B_Upscaling {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -82,24 +81,50 @@ public class C_Move_Brackets {
         while (t != 0) {
             t--;
             int n=in.nextInt();
-            String s=in.next();
-            int cnt=0;
-            Stack<Character> st=new Stack<>();
             for(int i=0;i<n;i++){
-                char ch=s.charAt(i);
-                if(ch == '('){
-                    st.push(ch);
-                }else{
-                    if(st.isEmpty()){
-                        continue;
+                int f=0;
+                for(int j=0;j<2*n;j+=2){
+                    if(i%2 == 0){
+                        if(f%2 == 0){
+                            System.out.print("##");
+                            f++;
+                        }else{
+                            System.out.print("..");
+                            f++;
+                        }
                     }else{
-                        cnt++;
-                        st.pop();
+                        if(f%2 == 0){
+                            System.out.print("..");
+                            f++;
+                        }else{
+                            System.out.print("##");
+                            f++;
+                        }
                     }
                 }
+                System.out.println();
+                f=0;
+                for(int j=0;j<2*n;j+=2){
+                    if(i%2 == 0){
+                        if(f%2 == 0){
+                            System.out.print("##");
+                            f++;
+                        }else{
+                            System.out.print("..");
+                            f++;
+                        }
+                    }else{
+                        if(f%2 == 0){
+                            System.out.print("..");
+                            f++;
+                        }else{
+                            System.out.print("##");
+                            f++;
+                        }
+                    }
+                }    
+                   System.out.println(); 
             }
-            int diff=n-2*cnt;
-            System.out.println(diff/2);
         }
     }
 }

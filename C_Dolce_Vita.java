@@ -1,8 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-import java.util.Stack;
-public class C_Move_Brackets {
+public class C_Dolce_Vita {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -79,27 +78,39 @@ public class C_Move_Brackets {
     public static void main(String[] args) throws java.lang.Exception {
         int t = in.nextInt();
     
-        while (t != 0) {
-            t--;
-            int n=in.nextInt();
-            String s=in.next();
-            int cnt=0;
-            Stack<Character> st=new Stack<>();
-            for(int i=0;i<n;i++){
-                char ch=s.charAt(i);
-                if(ch == '('){
-                    st.push(ch);
-                }else{
-                    if(st.isEmpty()){
-                        continue;
-                    }else{
-                        cnt++;
-                        st.pop();
+        while (t-- > 0) {
+            int n = in.nextInt();
+            long x = in.nextLong();
+            long[] a = new long[n];
+            
+            for (int i = 0; i < n; i++) {
+                a[i] = in.nextLong();
+            }
+            
+            Arrays.sort(a);
+            long ans = 0;
+            
+            for (int i = 0; i < n; i++) {
+                if (a[i] <= x) {
+                    x-=a[i];
+                    long l = 0;
+                    long h = x;  
+                    long cnt = 0;
+                    
+                    while (l <= h) {
+                        long mid = (l + h) / 2;
+                        if ((x - mid * (i + 1)) >= 0) {
+                            cnt = mid;
+                            l = mid + 1;
+                        } else {
+                            h = mid - 1;
+                        }
                     }
+                    ans += cnt+1;
                 }
             }
-            int diff=n-2*cnt;
-            System.out.println(diff/2);
+            
+            System.out.println(ans);
         }
     }
 }

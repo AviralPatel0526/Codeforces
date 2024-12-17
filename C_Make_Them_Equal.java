@@ -1,8 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-import java.util.Stack;
-public class C_Move_Brackets {
+public class C_Make_Them_Equal {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -75,31 +74,38 @@ public class C_Move_Brackets {
             return str;
         }
     }
-    
     public static void main(String[] args) throws java.lang.Exception {
         int t = in.nextInt();
     
-        while (t != 0) {
-            t--;
-            int n=in.nextInt();
-            String s=in.next();
-            int cnt=0;
-            Stack<Character> st=new Stack<>();
-            for(int i=0;i<n;i++){
-                char ch=s.charAt(i);
-                if(ch == '('){
-                    st.push(ch);
-                }else{
-                    if(st.isEmpty()){
-                        continue;
-                    }else{
-                        cnt++;
-                        st.pop();
+        while (t-- > 0) {
+            int n = in.nextInt();
+            char c = in.next().charAt(0);
+            String s = in.next();
+            int ans=-1;
+            for(int i=1;i<=n;i++){
+                boolean flag=true;
+                for(int j=i;j<=n;j+=i){
+                    if(s.charAt(j-1) != c){
+                        flag=false;
+                        break;
                     }
                 }
+                if(flag){
+                    ans=i;
+                    break;
+                }
             }
-            int diff=n-2*cnt;
-            System.out.println(diff/2);
+            if(ans!=-1){
+                if(ans==1){
+                    System.out.println(0);
+                }else{
+                    System.out.println(1);
+                    System.out.println(ans);
+                }
+            }else{
+                System.out.println(2);
+                System.out.println(n+" "+(n-1));
+            }
         }
     }
 }

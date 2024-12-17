@@ -1,8 +1,8 @@
 import java.util.*;
 import java.lang.*;
+import java.lang.reflect.Array;
 import java.io.*;
-import java.util.Stack;
-public class C_Move_Brackets {
+public class D_Product_of_Binary_Decimals {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -81,25 +81,38 @@ public class C_Move_Brackets {
     
         while (t != 0) {
             t--;
-            int n=in.nextInt();
-            String s=in.next();
-            int cnt=0;
-            Stack<Character> st=new Stack<>();
-            for(int i=0;i<n;i++){
-                char ch=s.charAt(i);
-                if(ch == '('){
-                    st.push(ch);
-                }else{
-                    if(st.isEmpty()){
-                        continue;
-                    }else{
-                        cnt++;
-                        st.pop();
+            int x=in.nextInt();
+            int n=x;
+            if(n == 1){
+                System.out.println("YES");
+                continue;
+            }
+            int a[]={10,11,110,111,100,101,1110,1111,1100,1101,1010,1011,1000,1001,11110,11111,11100,11101,11010,11011,11000,11001,10110,10111,10100,10101,10010,10011,10000,10001};
+            HashSet<Integer> set=new HashSet<>();
+            for(int i=0;i<a.length;i++){
+                set.add(a[i]);
+            }
+            if(set.contains(n)){
+                System.out.println("YES");
+                continue;
+            }
+            boolean flag=false;
+            outer : for(int i=0;i<a.length;i++){
+                if(n%a[i] == 0){
+                    while(n%a[i] == 0){
+                        n/=a[i];
+                        if(n == 1){
+                            flag=true;
+                            break outer;
+                        }
                     }
                 }
             }
-            int diff=n-2*cnt;
-            System.out.println(diff/2);
+            if(flag){
+                System.out.println("YES");
+            }else{
+                System.out.println("NO");
+            }
         }
     }
 }

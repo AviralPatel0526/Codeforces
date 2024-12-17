@@ -1,8 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-import java.util.Stack;
-public class C_Move_Brackets {
+public class B_Prinzessin_der_Verurteilung {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -81,25 +80,48 @@ public class C_Move_Brackets {
     
         while (t != 0) {
             t--;
-            int n=in.nextInt();
-            String s=in.next();
-            int cnt=0;
-            Stack<Character> st=new Stack<>();
-            for(int i=0;i<n;i++){
-                char ch=s.charAt(i);
-                if(ch == '('){
-                    st.push(ch);
-                }else{
-                    if(st.isEmpty()){
-                        continue;
-                    }else{
-                        cnt++;
-                        st.pop();
-                    }
+            int n = in.nextInt();
+            String s = in.next();
+            String temp = "abcdefghijklmnopqrstuvwxyz";
+            ArrayList<String> list = new ArrayList<>();
+            
+            // Generate all single-character strings
+            for (int i = 0; i < 26; i++) {
+                list.add("" + temp.charAt(i));
+            }
+            
+            // Generate all two-character strings
+            for (int i = 0; i < 26; i++) {
+                for (int j = 0; j < 26; j++) {
+                    if (list.size() >= 1000) break;
+                    String x = "" + temp.charAt(i) + temp.charAt(j);
+                    list.add(x);
                 }
             }
-            int diff=n-2*cnt;
-            System.out.println(diff/2);
+            
+            // Generate all three-character strings
+            for (int i = 0; i < 26; i++) {
+                for (int j = 0; j < 26; j++) {
+                    for (int k = 0; k < 26; k++) {
+                        if (list.size() >= 1000) break;
+                        String x = "" + temp.charAt(i) + temp.charAt(j) + temp.charAt(k);
+                        list.add(x);
+                    }
+                    if (list.size() >= 1000) break;
+                }
+                if (list.size() >= 1000) break;
+            }
+            
+            // Find the first string not present in 's'
+            int pos = 0;
+            for (int i = 0; i < list.size(); i++) {
+                if (!s.contains(list.get(i))) {
+                    pos = i;
+                    break;
+                }
+            }
+            System.out.println(list.get(pos));
         }
+        
     }
 }

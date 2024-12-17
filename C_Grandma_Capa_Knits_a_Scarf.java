@@ -1,8 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-import java.util.Stack;
-public class C_Move_Brackets {
+public class C_Grandma_Capa_Knits_a_Scarf {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -75,7 +74,28 @@ public class C_Move_Brackets {
             return str;
         }
     }
-    
+    static int f(String temp,char x){
+        int i=0;
+        int j=temp.length()-1;
+        int cnt=0;
+        while(i < j){
+            if(temp.charAt(i) != temp.charAt(j)){
+                if(temp.charAt(i) == x){
+                    i++;
+                    cnt++;
+                }else if(temp.charAt(j) == x){
+                    j--;
+                    cnt++;
+                }else{
+                    return -1;
+                }
+            }else{
+                i++;
+                j--;
+            }
+        }
+        return cnt;
+    }
     public static void main(String[] args) throws java.lang.Exception {
         int t = in.nextInt();
     
@@ -83,23 +103,28 @@ public class C_Move_Brackets {
             t--;
             int n=in.nextInt();
             String s=in.next();
-            int cnt=0;
-            Stack<Character> st=new Stack<>();
-            for(int i=0;i<n;i++){
-                char ch=s.charAt(i);
-                if(ch == '('){
-                    st.push(ch);
-                }else{
-                    if(st.isEmpty()){
-                        continue;
+            int i=0;;
+            int j=n-1;
+            int res=0;
+            while(i<j){
+                if(s.charAt(i) != s.charAt(j)){
+                    int ans1=f(s,s.charAt(i));
+                    int ans2=f(s,s.charAt(j));
+                    if(ans1 != -1 && ans2 != -1){
+                        res=Math.min(ans1,ans2);
+                    }else if(ans1 != -1){
+                        res=ans1;
+                    }else if(ans2 != -1){
+                        res=ans2;
                     }else{
-                        cnt++;
-                        st.pop();
+                        res=-1;
                     }
+                    break;
                 }
+                i++;
+                j--;
             }
-            int diff=n-2*cnt;
-            System.out.println(diff/2);
+            System.out.println(res);
         }
     }
 }

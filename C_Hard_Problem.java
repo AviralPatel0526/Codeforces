@@ -1,8 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-import java.util.Stack;
-public class C_Move_Brackets {
+public class C_Hard_Problem {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -81,25 +80,20 @@ public class C_Move_Brackets {
     
         while (t != 0) {
             t--;
-            int n=in.nextInt();
-            String s=in.next();
-            int cnt=0;
-            Stack<Character> st=new Stack<>();
-            for(int i=0;i<n;i++){
-                char ch=s.charAt(i);
-                if(ch == '('){
-                    st.push(ch);
-                }else{
-                    if(st.isEmpty()){
-                        continue;
-                    }else{
-                        cnt++;
-                        st.pop();
-                    }
-                }
+            long m=in.nextLong();
+            long a=in.nextLong();
+            long b=in.nextLong();
+            long c=in.nextLong();
+            long ans=Math.min(a,m)+Math.min(b, m);
+            long x=0;
+            if(m-a > 0){
+                x+=m-a;
+            } 
+            if(m-b > 0){
+                x+=m-b;
             }
-            int diff=n-2*cnt;
-            System.out.println(diff/2);
+            ans+=Math.min(x,c);
+            System.out.println(ans);
         }
     }
 }

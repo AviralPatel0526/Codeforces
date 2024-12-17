@@ -1,8 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-import java.util.Stack;
-public class C_Move_Brackets {
+public class C_Clock_Conversion {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -81,25 +80,37 @@ public class C_Move_Brackets {
     
         while (t != 0) {
             t--;
-            int n=in.nextInt();
-            String s=in.next();
-            int cnt=0;
-            Stack<Character> st=new Stack<>();
-            for(int i=0;i<n;i++){
-                char ch=s.charAt(i);
-                if(ch == '('){
-                    st.push(ch);
+            String time=in.next();
+            String hr=time.substring(0,2);
+            String min=time.substring(3);
+            int h=Integer.parseInt(hr);
+            int m=Integer.parseInt(min);
+            if(h == 0){
+                if(m == 0){
+                    System.out.println("12:00 AM");
                 }else{
-                    if(st.isEmpty()){
-                        continue;
-                    }else{
-                        cnt++;
-                        st.pop();
-                    }
+                    
+                System.out.println("12:"+min+" AM");
                 }
+                continue;
             }
-            int diff=n-2*cnt;
-            System.out.println(diff/2);
+            if(h < 12){
+                System.out.println(time+" AM");
+                continue;
+            }
+            if(h == 12){
+                System.out.println(time + " PM");
+                continue;
+            }
+            if(h > 12){
+                int x=h-12;
+                if(x < 10){
+                    System.out.println("0"+x+":"+min+" PM");
+                }else{
+                    System.out.println(x+":"+min+" PM");
+                }
+                
+            }
         }
     }
 }

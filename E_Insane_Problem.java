@@ -1,8 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-import java.util.Stack;
-public class C_Move_Brackets {
+public class E_Insane_Problem {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -79,27 +78,50 @@ public class C_Move_Brackets {
     public static void main(String[] args) throws java.lang.Exception {
         int t = in.nextInt();
     
-        while (t != 0) {
-            t--;
-            int n=in.nextInt();
-            String s=in.next();
-            int cnt=0;
-            Stack<Character> st=new Stack<>();
-            for(int i=0;i<n;i++){
-                char ch=s.charAt(i);
-                if(ch == '('){
-                    st.push(ch);
-                }else{
-                    if(st.isEmpty()){
-                        continue;
-                    }else{
-                        cnt++;
-                        st.pop();
+        while (t-- > 0) {
+            long k = in.nextLong();
+            long l1 = in.nextLong();
+            long r1 = in.nextLong();
+            long l2 = in.nextLong();
+            long r2 = in.nextLong();
+
+            long ans = 0;
+
+            for (int i = 0; i <= 32; i++) { 
+                long power = (long) Math.pow(k, i);
+                if (power > r2) break; 
+
+                long low = l1, high = r1, sm = -1;
+                while (low <= high) {
+                    long mid = (low + high) / 2;
+                    if (mid * power >= l2 && mid * power <= r2) {
+                        sm = mid; 
+                        high = mid - 1; 
+                    } else if (mid * power < l2) {
+                        low = mid + 1;
+                    } else {
+                        high = mid - 1;
                     }
                 }
+
+                long l = l1, h = r1, z = -1;
+                while (l <= h) {
+                    long mid = (l + h) / 2;
+                    if (mid * power <= r2) {
+                        z = mid; 
+                        l = mid + 1; 
+                    } else {
+                        h = mid - 1;
+                    }
+                }
+
+                if (sm != -1 && z != -1 && z >= sm) {
+                    ans += (z - sm + 1);
+                }
             }
-            int diff=n-2*cnt;
-            System.out.println(diff/2);
+
+            System.out.println(ans);
         }
+        
     }
 }

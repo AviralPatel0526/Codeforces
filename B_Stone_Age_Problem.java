@@ -2,7 +2,8 @@ import java.util.*;
 import java.lang.*;
 import java.io.*;
 import java.util.Stack;
-public class C_Move_Brackets {
+
+public class B_Stone_Age_Problem {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -77,29 +78,41 @@ public class C_Move_Brackets {
     }
     
     public static void main(String[] args) throws java.lang.Exception {
-        int t = in.nextInt();
-    
-        while (t != 0) {
-            t--;
-            int n=in.nextInt();
-            String s=in.next();
-            int cnt=0;
-            Stack<Character> st=new Stack<>();
-            for(int i=0;i<n;i++){
-                char ch=s.charAt(i);
-                if(ch == '('){
-                    st.push(ch);
-                }else{
-                    if(st.isEmpty()){
-                        continue;
-                    }else{
-                        cnt++;
-                        st.pop();
-                    }
+        int n = in.nextInt();
+        int q = in.nextInt();
+        long a[] = al(n);
+        long sum = 0;
+        for (int i = 0; i < n; i++) {
+            sum += a[i];
+        }
+        
+        Stack<Long> st = new Stack<>();
+        HashMap<Integer, Long> map = new HashMap<>();
+        
+        for (int i = 0; i < q; i++) {
+            int choice = in.nextInt();
+            if (choice == 1) {
+                int idx = in.nextInt();
+                long x = in.nextLong();
+                
+                if (st.size() != 0 && !map.containsKey(idx-1)) {
+                    sum = sum - st.peek() + x;
+                } else {
+                    sum = sum - a[idx - 1] + x;
                 }
+                a[idx - 1] = x;
+                
+                map.put(idx-1, x); 
+            } else {
+                long x = in.nextLong();
+                st.push(x);
+                sum = x * n;
+                map.clear();
             }
-            int diff=n-2*cnt;
-            System.out.println(diff/2);
+            
+            // Print the updated sum after each query
+            System.out.println(sum);
         }
     }
+    
 }

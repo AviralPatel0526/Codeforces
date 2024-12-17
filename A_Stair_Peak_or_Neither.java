@@ -1,8 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-import java.util.Stack;
-public class C_Move_Brackets {
+public class A_Stair_Peak_or_Neither {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -81,25 +80,16 @@ public class C_Move_Brackets {
     
         while (t != 0) {
             t--;
-            int n=in.nextInt();
-            String s=in.next();
-            int cnt=0;
-            Stack<Character> st=new Stack<>();
-            for(int i=0;i<n;i++){
-                char ch=s.charAt(i);
-                if(ch == '('){
-                    st.push(ch);
-                }else{
-                    if(st.isEmpty()){
-                        continue;
-                    }else{
-                        cnt++;
-                        st.pop();
-                    }
-                }
+            int a=in.nextInt();
+            int b=in.nextInt();
+            int c=in.nextInt();
+            if(a<b && b<c){
+                System.out.println("STAIR");
+            }else if(a<b && b>c){
+                System.out.println("PEAK");
+            }else{
+                System.out.println("NONE");
             }
-            int diff=n-2*cnt;
-            System.out.println(diff/2);
         }
     }
 }

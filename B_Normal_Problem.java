@@ -1,8 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-import java.util.Stack;
-public class C_Move_Brackets {
+public class B_Normal_Problem {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -81,25 +80,20 @@ public class C_Move_Brackets {
     
         while (t != 0) {
             t--;
-            int n=in.nextInt();
             String s=in.next();
-            int cnt=0;
-            Stack<Character> st=new Stack<>();
+            String ans="";
+            int n=s.length();
             for(int i=0;i<n;i++){
                 char ch=s.charAt(i);
-                if(ch == '('){
-                    st.push(ch);
+                if(ch == 'q'){
+                    ans='p'+ans;
+                }else if(ch == 'p'){
+                    ans='q'+ans;
                 }else{
-                    if(st.isEmpty()){
-                        continue;
-                    }else{
-                        cnt++;
-                        st.pop();
-                    }
+                    ans='w'+ans;
                 }
             }
-            int diff=n-2*cnt;
-            System.out.println(diff/2);
+            System.out.println(ans);
         }
     }
 }

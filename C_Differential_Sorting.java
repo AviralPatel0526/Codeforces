@@ -1,8 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-import java.util.Stack;
-public class C_Move_Brackets {
+public class C_Differential_Sorting {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -82,24 +81,30 @@ public class C_Move_Brackets {
         while (t != 0) {
             t--;
             int n=in.nextInt();
-            String s=in.next();
-            int cnt=0;
-            Stack<Character> st=new Stack<>();
-            for(int i=0;i<n;i++){
-                char ch=s.charAt(i);
-                if(ch == '('){
-                    st.push(ch);
-                }else{
-                    if(st.isEmpty()){
-                        continue;
-                    }else{
-                        cnt++;
-                        st.pop();
-                    }
+            long a[]=al(n);
+            boolean flag=true;
+            for(int i=0;i<n-1;i++){
+                if(a[i] > a[i+1]){
+                    flag=false;
+                    break;
                 }
             }
-            int diff=n-2*cnt;
-            System.out.println(diff/2);
+            if(flag){
+                System.out.println(0);
+                continue;
+            }
+            if(a[n-1] < a[n-2]){
+                System.out.println(-1);
+            }else{
+                if(a[n-1] >= 0){
+                    System.out.println(n-2);
+                    for(int i=0;i<n-2;i++){
+                        System.out.println((i+1)+" "+(n-1)+" "+(n));
+                    }
+                }else{
+                    System.out.println(-1);
+                }
+            }
         }
     }
 }

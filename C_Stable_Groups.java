@@ -1,8 +1,8 @@
 import java.util.*;
 import java.lang.*;
+import java.lang.reflect.Array;
 import java.io.*;
-import java.util.Stack;
-public class C_Move_Brackets {
+public class C_Stable_Groups {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -75,31 +75,43 @@ public class C_Move_Brackets {
             return str;
         }
     }
-    
     public static void main(String[] args) throws java.lang.Exception {
-        int t = in.nextInt();
-    
-        while (t != 0) {
-            t--;
-            int n=in.nextInt();
-            String s=in.next();
-            int cnt=0;
-            Stack<Character> st=new Stack<>();
-            for(int i=0;i<n;i++){
-                char ch=s.charAt(i);
-                if(ch == '('){
-                    st.push(ch);
-                }else{
-                    if(st.isEmpty()){
-                        continue;
-                    }else{
-                        cnt++;
-                        st.pop();
-                    }
+        int n = in.nextInt();
+        long k = in.nextLong();
+        long x = in.nextLong();
+        long[] a = new long[n];
+        for (int i = 0; i < n; i++) {
+            a[i] = in.nextLong();
+        }
+        Arrays.sort(a);
+
+        ArrayList<Long> gp = new ArrayList<>();
+        for (int i = 1; i < n; i++) {
+            if (a[i] - a[i - 1] > x) {
+                gp.add(a[i] - a[i - 1]);
+            }
+        }
+
+        if (k == 0) {
+            System.out.println(gp.size() + 1);
+        } else {
+            Collections.sort(gp);
+            long tg = gp.size();
+            for (int i = 0; i < gp.size(); i++) {
+                long gap = gp.get(i);
+                long sub = (gap + x - 1) / x - 1; // Avoids floating-point math
+                if (k >= sub) {
+                    k -= sub;
+                    tg--;
+                } else {
+                    break;
                 }
             }
-            int diff=n-2*cnt;
-            System.out.println(diff/2);
+            System.out.println(tg + 1);
+     
         }
+        
+        
+        
     }
 }
