@@ -1,10 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-/**
- * B_Beautiful_Array
- */
-public class B_Beautiful_Array {
+public class Bulk_Discount {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -20,41 +17,7 @@ public class B_Beautiful_Array {
     static long lcm(long a, long b) {
         return (a / gcd(a, b)) * b;
     }
-
-    //Sieve of Eratosthenes
-    static int ssize=1000000;
-    static boolean sieve[];
-    static void fillSieve(){
-        sieve=new boolean[ssize+1];
-        Arrays.fill(sieve, true);
-        for(int i=2;i*i<=ssize;i++){
-            if(sieve[i]){
-                for(int j=i*i;j<=ssize;j+=i){
-                    sieve[j]=false;
-                }
-            }
-        }
-    }
-
-    //spf
-    static int spf[];
-    static void fillSpf(){
-        spf=new int[ssize+1];
-        for(int i=0;i<=ssize;i++){
-            spf[i]=i;
-        }
-        for(int i=2;i*i<=ssize;i++){
-            if(spf[i] != i){
-                continue;
-            }
-            for(int j=i*i;j<=ssize;j+=i){
-                if(spf[j] == j){
-                    spf[j]=i;
-                }
-            }
-        }
-    }
-
+    
     static FastReader in = new FastReader();
     // input of int array
     static int[] ai(int n) {
@@ -115,34 +78,19 @@ public class B_Beautiful_Array {
     public static void main(String[] args) throws java.lang.Exception {
         int t = in.nextInt();
     
-        while (t-- > 0) {
-            int n = in.nextInt();
-            long x = in.nextLong();
-            long s = in.nextLong();
-            long q = in.nextLong();
-            
-            long[] a = new long[n];
-            a[0] = x * s;
-            q -= x * s;
-
-            if (q < 0) {
-                System.out.println("-1");
-            } else {
-                for (int i = 0; i < n; ++i) {
-                    long now = Math.min(x - 1, q);
-                    a[i] += now;
-                    q -= now;
-                }
-
-                if (q > 0) {
-                    System.out.println("-1");
-                } else {
-                    for (int i = 0; i < n; ++i) {
-                        System.out.print(a[i] + " ");
-                    }
-                    System.out.println();
-                }
+        while (t != 0) {
+            t--;
+            int n=in.nextInt();
+            long a[]=al(n);
+            Arrays.sort(a);
+            long ans=0;
+            long cnt=0;
+            for(int i=0;i<n;i++){
+                long cost=Math.max(a[i]-cnt,0);
+                ans+=cost;
+                cnt++;
             }
+            System.out.println(ans);
         }
     }
 }

@@ -1,10 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-/**
- * B_Beautiful_Array
- */
-public class B_Beautiful_Array {
+public class D_Find_the_Different_Ones {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -20,41 +17,7 @@ public class B_Beautiful_Array {
     static long lcm(long a, long b) {
         return (a / gcd(a, b)) * b;
     }
-
-    //Sieve of Eratosthenes
-    static int ssize=1000000;
-    static boolean sieve[];
-    static void fillSieve(){
-        sieve=new boolean[ssize+1];
-        Arrays.fill(sieve, true);
-        for(int i=2;i*i<=ssize;i++){
-            if(sieve[i]){
-                for(int j=i*i;j<=ssize;j+=i){
-                    sieve[j]=false;
-                }
-            }
-        }
-    }
-
-    //spf
-    static int spf[];
-    static void fillSpf(){
-        spf=new int[ssize+1];
-        for(int i=0;i<=ssize;i++){
-            spf[i]=i;
-        }
-        for(int i=2;i*i<=ssize;i++){
-            if(spf[i] != i){
-                continue;
-            }
-            for(int j=i*i;j<=ssize;j+=i){
-                if(spf[j] == j){
-                    spf[j]=i;
-                }
-            }
-        }
-    }
-
+    
     static FastReader in = new FastReader();
     // input of int array
     static int[] ai(int n) {
@@ -115,34 +78,49 @@ public class B_Beautiful_Array {
     public static void main(String[] args) throws java.lang.Exception {
         int t = in.nextInt();
     
-        while (t-- > 0) {
+        while (t != 0) {
+            t--;
             int n = in.nextInt();
-            long x = in.nextLong();
-            long s = in.nextLong();
-            long q = in.nextLong();
-            
-            long[] a = new long[n];
-            a[0] = x * s;
-            q -= x * s;
-
-            if (q < 0) {
-                System.out.println("-1");
-            } else {
-                for (int i = 0; i < n; ++i) {
-                    long now = Math.min(x - 1, q);
-                    a[i] += now;
-                    q -= now;
-                }
-
-                if (q > 0) {
-                    System.out.println("-1");
+            int[] a = ai(n);
+            int q = in.nextInt();
+            int[] prev = new int[n];
+            prev[0] = -1;
+        
+            // Build the prev array
+            for (int i = 1; i < n; i++) {
+                if (a[i] == a[i - 1]) {
+                    prev[i] = prev[i - 1];
                 } else {
-                    for (int i = 0; i < n; ++i) {
-                        System.out.print(a[i] + " ");
-                    }
-                    System.out.println();
+                    prev[i] = i - 1;
                 }
             }
+        
+            // Process queries
+            for (int i = 0; i < q; i++) {
+                int l = in.nextInt() - 1;
+                int h = in.nextInt() - 1;
+        
+                if (prev[l] == prev[h]) {
+                    System.out.println("-1 -1");
+                } else {
+                    int low = l;
+                    int high = h;
+                    int ans = h;
+        
+                    while (low <= high) {
+                        int mid = (low + high) / 2;
+                        if (prev[mid] > prev[l]) {
+                            ans = mid;
+                            high = mid - 1;
+                        } else {
+                            low = mid + 1;
+                        }
+                    }
+                    System.out.println((l + 1) + " " + (ans + 1));
+                }
+            }
+            System.out.println();
         }
+        
     }
 }

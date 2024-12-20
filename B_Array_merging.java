@@ -4,35 +4,70 @@ import java.io.*;
 
 public class B_Array_merging {
 
-    // GCD Method
-    static long gcd(long a, long b) {
-        while (b != 0) {
-            long t = b;
-            b = a % b;
-            a = t;
-        }
-        return a;
-    }
-
-    // LCM Method
-    static long lcm(long a, long b) {
-        return (a / gcd(a, b)) * b;
-    }
-
     static FastReader in = new FastReader();
 
-    // input of int array
-    static int[] ai(int n) {
-        int[] arr = new int[n];
-        for (int i = 0; i < n; i++) arr[i] = in.nextInt();
-        return arr;
-    }
+    public static void main(String[] args) throws java.lang.Exception {
+        int t = in.nextInt();
 
-    // input of long array
-    static long[] al(int n) {
-        long[] arr = new long[n];
-        for (int i = 0; i < n; i++) arr[i] = in.nextLong();
-        return arr;
+        while (t-- > 0) {
+            int n = in.nextInt();
+            int[] a = new int[n];
+            int[] b = new int[n];
+
+            for (int i = 0; i < n; ++i) {
+                a[i] = in.nextInt();
+            }
+
+            for (int i = 0; i < n; ++i) {
+                b[i] = in.nextInt();
+            }
+
+            HashMap<Integer, Integer> mapa = new HashMap<>();
+            HashMap<Integer, Integer> mapb = new HashMap<>();
+            int cnt = 1;
+
+            // Count for array a
+            for (int i = 1; i < n; i++) {
+                if (a[i] == a[i - 1]) {
+                    cnt++;
+                } else {
+                    mapa.put(a[i - 1], Math.max(mapa.getOrDefault(a[i - 1], 0), cnt));
+                    cnt = 1; // reset count for a new number
+                }
+            }
+            // Ensure the last sequence is added
+            mapa.put(a[n - 1], Math.max(mapa.getOrDefault(a[n - 1], 0), cnt));
+
+            // Reset counter for the next array
+            cnt = 1;
+            // Count for array b
+            for (int i = 1; i < n; i++) {
+                if (b[i] == b[i - 1]) {
+                    cnt++;
+                } else {
+                    mapb.put(b[i - 1], Math.max(mapb.getOrDefault(b[i - 1], 0), cnt));
+                    cnt = 1; // reset count for a new number
+                }
+            }
+            // Ensure the last sequence is added
+            mapb.put(b[n - 1], Math.max(mapb.getOrDefault(b[n - 1], 0), cnt));
+
+            int ans = 0;
+            // Calculate the maximum sequence length by combining both maps
+            for (int key : mapa.keySet()) {
+                int sum = mapa.getOrDefault(key, 0) + mapb.getOrDefault(key, 0);
+                ans = Math.max(ans, sum);
+            }
+
+            // Also check keys present in mapb but not in mapa
+            for (int key : mapb.keySet()) {
+                if (!mapa.containsKey(key)) {
+                    ans = Math.max(ans, mapb.get(key));
+                }
+            }
+
+            System.out.println(ans);
+        }
     }
 
     static class FastReader {
@@ -76,58 +111,4 @@ public class B_Array_merging {
             return str;
         }
     }
-
-    public static void main(String[] args) throws java.lang.Exception {
-        int t = in.nextInt();
-    
-        while (t-- > 0) {
-            int n = in.nextInt();
-            int[] a = new int[n];
-            int[] b = new int[n];
-    
-            for (int i = 0; i < n; ++i) {
-                a[i] = in.nextInt();
-            }
-    
-            for (int i = 0; i < n; ++i) {
-                b[i] = in.nextInt();
-            }
-    
-            HashMap<Integer, Integer> mapa = new HashMap<>();
-            HashMap<Integer, Integer> mapb = new HashMap<>();
-            int cnt = 1;
-    
-            for (int i = 1; i < n; i++) {
-                if (a[i] == a[i - 1]) {
-                    cnt++;
-                } else {
-                    mapa.put(a[i - 1], Math.max(mapa.getOrDefault(a[i - 1], 0), cnt));
-                    cnt = 1;
-                }
-            }
-            // Ensure the last sequence is added
-            mapa.put(a[n - 1], Math.max(mapa.getOrDefault(a[n - 1], 0), cnt));
-    
-            int cnt2 = 1;
-            for (int i = 1; i < n; i++) {
-                if (b[i] == b[i - 1]) {
-                    cnt2++;
-                } else {
-                    mapb.put(b[i - 1], Math.max(mapb.getOrDefault(b[i - 1], 0), cnt2));
-                    cnt2 = 1;
-                }
-            }
-            // Ensure the last sequence is added
-            mapb.put(b[n - 1], Math.max(mapb.getOrDefault(b[n - 1], 0), cnt2));
-    
-            int ans = 0;
-            for (int key : mapa.keySet()) {
-                int sum = mapa.getOrDefault(key, 0) + mapb.getOrDefault(key, 0);
-                ans = Math.max(ans, sum);
-            }
-            System.out.println(ans);
-            
-        }
-    }
-    
 }

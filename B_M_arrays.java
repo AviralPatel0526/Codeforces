@@ -1,10 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-/**
- * B_Beautiful_Array
- */
-public class B_Beautiful_Array {
+public class B_M_arrays {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -20,41 +17,7 @@ public class B_Beautiful_Array {
     static long lcm(long a, long b) {
         return (a / gcd(a, b)) * b;
     }
-
-    //Sieve of Eratosthenes
-    static int ssize=1000000;
-    static boolean sieve[];
-    static void fillSieve(){
-        sieve=new boolean[ssize+1];
-        Arrays.fill(sieve, true);
-        for(int i=2;i*i<=ssize;i++){
-            if(sieve[i]){
-                for(int j=i*i;j<=ssize;j+=i){
-                    sieve[j]=false;
-                }
-            }
-        }
-    }
-
-    //spf
-    static int spf[];
-    static void fillSpf(){
-        spf=new int[ssize+1];
-        for(int i=0;i<=ssize;i++){
-            spf[i]=i;
-        }
-        for(int i=2;i*i<=ssize;i++){
-            if(spf[i] != i){
-                continue;
-            }
-            for(int j=i*i;j<=ssize;j+=i){
-                if(spf[j] == j){
-                    spf[j]=i;
-                }
-            }
-        }
-    }
-
+    
     static FastReader in = new FastReader();
     // input of int array
     static int[] ai(int n) {
@@ -115,34 +78,46 @@ public class B_Beautiful_Array {
     public static void main(String[] args) throws java.lang.Exception {
         int t = in.nextInt();
     
-        while (t-- > 0) {
+        while (t != 0) {
+            t--;
             int n = in.nextInt();
-            long x = in.nextLong();
-            long s = in.nextLong();
-            long q = in.nextLong();
+            long m = in.nextLong();
+            long[] a = al(n); // Assuming 'al' initializes an array of size 'n'
+            HashMap<Long, Integer> map = new HashMap<>();
             
-            long[] a = new long[n];
-            a[0] = x * s;
-            q -= x * s;
-
-            if (q < 0) {
-                System.out.println("-1");
-            } else {
-                for (int i = 0; i < n; ++i) {
-                    long now = Math.min(x - 1, q);
-                    a[i] += now;
-                    q -= now;
-                }
-
-                if (q > 0) {
-                    System.out.println("-1");
-                } else {
-                    for (int i = 0; i < n; ++i) {
-                        System.out.print(a[i] + " ");
+            for (int i = 0; i < n; i++) {
+                a[i] = a[i] % m;
+                map.put(a[i], map.getOrDefault(a[i], 0) + 1);
+            }
+            
+            int cnt = 0;
+            for (int i = 0; i < n; i++) {
+                if (map.containsKey(a[i])) {
+                    map.put(a[i], map.get(a[i]) - 1);
+                    if (map.get(a[i]) == 0) {
+                        map.remove(a[i]);
                     }
-                    System.out.println();
+                    long front = (m - a[i]) % m;
+                    long back = (m - a[i]) % m;
+                    while (map.containsKey(front)) {
+                        map.put(front, map.get(front) - 1);
+                        if (map.get(front) == 0) {
+                            map.remove(front);
+                        }
+                        front = (m - front) % m; 
+                    }
+                    while (map.containsKey(back)) {
+                        map.put(back, map.get(back) - 1);
+                        if (map.get(back) == 0) {
+                            map.remove(back);
+                        }
+                        back = (m - back) % m; 
+                    }
+                    cnt++;
                 }
             }
+            System.out.println(cnt);
         }
+        
     }
 }
