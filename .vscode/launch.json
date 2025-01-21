@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "B_Find_the_Permutation",
+            "request": "launch",
+            "mainClass": "B_Find_the_Permutation",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "Oracledp",
+            "request": "launch",
+            "mainClass": "Oracledp",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
             "name": "E_Interview",
             "request": "launch",
             "mainClass": "E_Interview",
