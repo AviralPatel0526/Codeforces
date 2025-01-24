@@ -1,7 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-public class C_Kevin_and_Puzzle {
+public class B_Subsequence_Update {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -161,26 +161,51 @@ public class C_Kevin_and_Puzzle {
             return str;
         }
     }
-    static long f(int i, int n, int a[]) {
-        if (i == n) {
-            return 1; 
+    static long f(ArrayList<Long> a,ArrayList<Long> b){
+        int i=0;
+        long sum=0;
+        while(i < a.size() && i < b.size()){
+            if(a.get(i) < b.get(i)){
+                sum+=a.get(i);
+                i++;
+            }else{
+                break;
+            }
         }
-    
-        long honest = 0;
-        if (a[i] < (i + 1) / 2) { 
-            honest = f(i + 1, n, a); 
+        while(i < b.size()){
+            sum+=b.get(i);
+            i++;
         }
-        long liar = f(i + 1, n, a); 
-        return liar + honest; 
+        return sum;
     }
     public static void main(String[] args) throws java.lang.Exception {
-        int t = in.nextInt();    
+        int t = in.nextInt();
+    
         while (t != 0) {
             t--;
             int n=in.nextInt();
-            int a[]=ai(n);
-            long ans=f(0,n,a);
-            System.out.println(ans);
+            int l=in.nextInt();
+            int r=in.nextInt();
+            long a[]=al(n);
+            l--;
+            r--;
+            ArrayList<Long> first=new ArrayList<>();
+            ArrayList<Long> middle=new ArrayList<>();
+            ArrayList<Long> last=new ArrayList<>();
+            for(int i=0;i<n;i++){
+                if(i < l){
+                    first.add(a[i]);
+                }else if(i > r){
+                    last.add(a[i]);
+                }else{
+                    middle.add(a[i]);
+                }
+            }
+            Collections.sort(first);
+            Collections.sort(middle,(x,y)->Long.compare(y, x));
+            Collections.sort(last);
+            long sum=Math.min(f(first,middle),f(last,middle));
+            System.out.println(sum);
         }
     }
 }
