@@ -1,7 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-public class Hamming_equivalent {
+public class B_AND_Sequences {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -165,41 +165,37 @@ public class Hamming_equivalent {
     public static void main(String[] args) throws java.lang.Exception {
         int t = in.nextInt();
     
-        while (t-- > 0) {
-            int n = in.nextInt(); 
-            int[] a = new int[n];
-            for (int i = 0; i < n; i++) {
-                a[i] = in.nextInt();
+        while (t != 0) {
+            t--;
+            int n=in.nextInt();
+            long a[]=al(n);
+            long min=Long.MAX_VALUE;
+            for(long i : a){
+                min=Math.min(i, min);
             }
-
-            HashMap<Integer, Queue<Integer>> map = new HashMap<>();
-            for (int i = 0; i < n; i++) {
-                int setBits = Integer.bitCount(a[i]);
-                map.putIfAbsent(setBits, new LinkedList<>());
-                map.get(setBits).add(i);
-            }
-
-            int[] b = new int[n];
-            for (int i = 0; i < n; i++) {
-                int setBits = Integer.bitCount(i + 1);
-                if (map.containsKey(setBits) && !map.get(setBits).isEmpty()) {
-                    int idx = map.get(setBits).poll();
-                    b[idx] = i + 1;
+            long cnt=0;
+            boolean flag=true;
+            for(long i : a){
+                if(i == min){
+                    cnt++;
                 }
-            }
-
-            boolean flag = true;
-            for (int i = 1; i < n; i++) {
-                if (b[i] < b[i - 1]) {
-                    flag = false;
+                if((min&i) != min){
+                    flag=false;
                     break;
                 }
             }
-
-            if (flag) {
-                System.out.println("Yes");
-            } else {
-                System.out.println("No");
+            if(cnt < 2 || !flag){            
+                System.out.println(0);
+            }else{
+                long ans=1;
+                int MOD=1000000007;
+                for(long i=1;i<=n-2;i++){
+                    ans=((ans)%MOD*(i)%MOD)%MOD;
+                }
+                cnt=((cnt%MOD)*((cnt-1)%MOD))%MOD;
+          
+                ans=((ans)%MOD*(cnt)%MOD)%MOD;
+                System.out.println(ans);
             }
         }
     }

@@ -6,6 +6,69 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Multiplexer",
+            "request": "launch",
+            "mainClass": "Multiplexer",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "Deletion_and_Difference",
+            "request": "launch",
+            "mainClass": "Deletion_and_Difference",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "cooa",
+            "request": "launch",
+            "mainClass": "cooa",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "GraphTraversal",
+            "request": "launch",
+            "mainClass": "GraphTraversal",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "Khudsekarunga",
+            "request": "launch",
+            "mainClass": "Khudsekarunga",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "Solution",
+            "request": "launch",
+            "mainClass": "Solution",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "Get_Min_Cost",
+            "request": "launch",
+            "mainClass": "Get_Min_Cost",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "C_Schedule_Management",
+            "request": "launch",
+            "mainClass": "C_Schedule_Management",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
             "name": "B_Find_the_Permutation",
             "request": "launch",
             "mainClass": "B_Find_the_Permutation",

@@ -1,7 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-public class Hamming_equivalent {
+public class B_Variety_is_Discouraged {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -166,41 +166,41 @@ public class Hamming_equivalent {
         int t = in.nextInt();
     
         while (t-- > 0) {
-            int n = in.nextInt(); 
-            int[] a = new int[n];
+            int n = in.nextInt();
+            int a[] = ai(n);
+            TreeMap<Integer, Integer> map = new TreeMap<>();
             for (int i = 0; i < n; i++) {
-                a[i] = in.nextInt();
+                map.put(a[i], map.getOrDefault(a[i], 0) + 1);
             }
-
-            HashMap<Integer, Queue<Integer>> map = new HashMap<>();
+            
+            int cnt = 0;
+            int max = 0;  
+            int st = -1;
+            int en = -1;
+            
             for (int i = 0; i < n; i++) {
-                int setBits = Integer.bitCount(a[i]);
-                map.putIfAbsent(setBits, new LinkedList<>());
-                map.get(setBits).add(i);
-            }
-
-            int[] b = new int[n];
-            for (int i = 0; i < n; i++) {
-                int setBits = Integer.bitCount(i + 1);
-                if (map.containsKey(setBits) && !map.get(setBits).isEmpty()) {
-                    int idx = map.get(setBits).poll();
-                    b[idx] = i + 1;
+                if (map.get(a[i]) == 1) {
+                    cnt++;
+                    if (cnt > max) {
+                        max = cnt;
+                        st = i - cnt + 1;
+                        en = i;
+                    }
+                } else {
+                    cnt = 0;  
                 }
             }
-
-            boolean flag = true;
-            for (int i = 1; i < n; i++) {
-                if (b[i] < b[i - 1]) {
-                    flag = false;
-                    break;
-                }
+            
+            if (map.size() == n) {
+                System.out.println("1 " + n);
             }
-
-            if (flag) {
-                System.out.println("Yes");
-            } else {
-                System.out.println("No");
+            else if (st == -1) {
+                System.out.println(0);
+            }
+            else {
+                System.out.println((st + 1) + " " + (en + 1));
             }
         }
+        
     }
 }

@@ -1,7 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-public class Hamming_equivalent {
+public class C_Remove_the_Ends {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -165,42 +165,42 @@ public class Hamming_equivalent {
     public static void main(String[] args) throws java.lang.Exception {
         int t = in.nextInt();
     
-        while (t-- > 0) {
-            int n = in.nextInt(); 
-            int[] a = new int[n];
-            for (int i = 0; i < n; i++) {
-                a[i] = in.nextInt();
-            }
-
-            HashMap<Integer, Queue<Integer>> map = new HashMap<>();
-            for (int i = 0; i < n; i++) {
-                int setBits = Integer.bitCount(a[i]);
-                map.putIfAbsent(setBits, new LinkedList<>());
-                map.get(setBits).add(i);
-            }
-
-            int[] b = new int[n];
-            for (int i = 0; i < n; i++) {
-                int setBits = Integer.bitCount(i + 1);
-                if (map.containsKey(setBits) && !map.get(setBits).isEmpty()) {
-                    int idx = map.get(setBits).poll();
-                    b[idx] = i + 1;
+        while (t != 0) {
+            t--;
+            int n=in.nextInt();
+            long a[]=al(n);
+            long ns=0;
+            long ps=0;
+            long psum[]=new long[n];
+            long nsum[]=new long[n];
+            for(int i=0;i<n;i++){
+                if(a[i] < 0){
+                    ns+=-1*a[i];
+                }else{
+                    ps+=a[i];
                 }
             }
-
-            boolean flag = true;
-            for (int i = 1; i < n; i++) {
-                if (b[i] < b[i - 1]) {
-                    flag = false;
-                    break;
+            long psa=0;
+            for(int i=0;i<n;i++){
+                if(a[i] > 0){
+                    psa+=a[i];
                 }
+                psum[i]=psa;
             }
-
-            if (flag) {
-                System.out.println("Yes");
-            } else {
-                System.out.println("No");
+            long nsa=0;
+            for(int i=n-1;i>=0;i--){
+                if(a[i] < 0){
+                    nsa+=-1*a[i];
+                }
+                nsum[i]=nsa;
             }
+            long max=Long.MIN_VALUE;
+            for(int i=0;i<n-1;i++){
+                max=Math.max(max,psum[i]+nsum[i+1]);
+            }
+            max=Math.max(ns,max);
+            max=Math.max(ps,max);
+            System.out.println(max);
         }
     }
 }

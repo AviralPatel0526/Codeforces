@@ -1,7 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-public class Hamming_equivalent {
+public class AndOr {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -166,41 +166,54 @@ public class Hamming_equivalent {
         int t = in.nextInt();
     
         while (t-- > 0) {
-            int n = in.nextInt(); 
+            int n = in.nextInt();
             int[] a = new int[n];
+            
             for (int i = 0; i < n; i++) {
                 a[i] = in.nextInt();
             }
+            int q = in.nextInt();
 
-            HashMap<Integer, Queue<Integer>> map = new HashMap<>();
-            for (int i = 0; i < n; i++) {
-                int setBits = Integer.bitCount(a[i]);
-                map.putIfAbsent(setBits, new LinkedList<>());
-                map.get(setBits).add(i);
-            }
+            long[] ans = new long[q];
+            TreeSet<Integer> odd0 = new TreeSet<>(); 
+            TreeSet<Integer> eve0 = new TreeSet<>();
 
-            int[] b = new int[n];
             for (int i = 0; i < n; i++) {
-                int setBits = Integer.bitCount(i + 1);
-                if (map.containsKey(setBits) && !map.get(setBits).isEmpty()) {
-                    int idx = map.get(setBits).poll();
-                    b[idx] = i + 1;
+                if (i % 2 == 0 && a[i] == 1) {
+                    eve0.add(i);
+                } else if (i % 2 != 0 && a[i] == 0) {
+                    odd0.add(i);
                 }
             }
 
-            boolean flag = true;
-            for (int i = 1; i < n; i++) {
-                if (b[i] < b[i - 1]) {
-                    flag = false;
-                    break;
+            for (int i = 0; i < q; i++) {
+                int pos = in.nextInt() - 1;
+                int bit = in.nextInt();
+                a[pos] = bit;
+                if((pos&1) == 0){
+                    eve0.remove(pos);
+                    if(a[pos] == 1) eve0.add(pos);
+                } else{
+                    odd0.remove(pos);
+                    if(a[pos] == 0) odd0.add(pos);
                 }
+                if(eve0.isEmpty()){
+                    System.out.println(0);
+                    continue;
+                } 
+                if(odd0.isEmpty()){
+                    System.out.println(1);
+                    continue;
+                }
+                if(odd0.last() < eve0.last()){
+                    System.out.println(1);
+                    continue;
+                }
+                System.out.println(0);
+
             }
 
-            if (flag) {
-                System.out.println("Yes");
-            } else {
-                System.out.println("No");
-            }
+           
         }
     }
 }

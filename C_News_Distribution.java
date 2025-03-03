@@ -1,8 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-public class Hamming_equivalent {
-
+public class C_News_Distribution {
     // GCD Method
     static long gcd(long a, long b) {
         while (b != 0) {
@@ -161,46 +160,63 @@ public class Hamming_equivalent {
             return str;
         }
     }
-    
-    public static void main(String[] args) throws java.lang.Exception {
-        int t = in.nextInt();
-    
-        while (t-- > 0) {
-            int n = in.nextInt(); 
-            int[] a = new int[n];
+    static class DisjointSet {
+        int Parent[];
+        int Size[];
+        
+        DisjointSet(int n){
+            Parent = new int[n];
+            Size = new int[n];
             for (int i = 0; i < n; i++) {
-                a[i] = in.nextInt();
-            }
-
-            HashMap<Integer, Queue<Integer>> map = new HashMap<>();
-            for (int i = 0; i < n; i++) {
-                int setBits = Integer.bitCount(a[i]);
-                map.putIfAbsent(setBits, new LinkedList<>());
-                map.get(setBits).add(i);
-            }
-
-            int[] b = new int[n];
-            for (int i = 0; i < n; i++) {
-                int setBits = Integer.bitCount(i + 1);
-                if (map.containsKey(setBits) && !map.get(setBits).isEmpty()) {
-                    int idx = map.get(setBits).poll();
-                    b[idx] = i + 1;
-                }
-            }
-
-            boolean flag = true;
-            for (int i = 1; i < n; i++) {
-                if (b[i] < b[i - 1]) {
-                    flag = false;
-                    break;
-                }
-            }
-
-            if (flag) {
-                System.out.println("Yes");
-            } else {
-                System.out.println("No");
+                Parent[i] = i; 
+                Size[i] = 1;   
             }
         }
+        
+        int findParent(int i) {
+            if(i == Parent[i]){
+                return i;
+            }
+            return Parent[i] = findParent(Parent[i]); 
+        }
+        
+        void unionBySize(int u, int v){
+            int ulp_u = findParent(u);
+            int ulp_v = findParent(v);
+            if(ulp_u == ulp_v) return;
+            if(Size[ulp_u] < Size[ulp_v]){
+                Parent[ulp_u] = ulp_v;
+                Size[ulp_v] += Size[ulp_u];
+            } else {
+                Parent[ulp_v] = ulp_u;
+                Size[ulp_u] += Size[ulp_v];
+            }
+        }
+    }
+    public static void main(String[] args) throws java.lang.Exception {
+        int n=in.nextInt();
+        int m=in.nextInt();
+        ArrayList<ArrayList<Integer>> graph=new ArrayList<>();
+        for(int i=0;i<m;i++){
+            int s=in.nextInt();
+            ArrayList<Integer> temp=new ArrayList<>();
+            for(int j=0;j<s;j++){
+                temp.add(in.nextInt());
+            }
+            graph.add(temp);
+        }
+        DisjointSet ds = new DisjointSet(n+1);
+        for(int i=0;i<m;i++){
+            int s=graph.get(i).size();
+            ArrayList<Integer> temp=graph.get(i);
+            for(int j=1;j<s;j++){
+                ds.unionBySize(temp.get(j-1)-1,temp.get(j)-1);
+            }
+        }
+        long ans[]=new long[n];
+        for(int i=0;i<n;i++){
+            ans[i]=ds.Size[ds.findParent(i)];
+        }
+        aout(ans);
     }
 }

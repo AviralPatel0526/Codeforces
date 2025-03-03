@@ -1,7 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-public class Hamming_equivalent {
+public class Bigger_is_Better {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -165,41 +165,22 @@ public class Hamming_equivalent {
     public static void main(String[] args) throws java.lang.Exception {
         int t = in.nextInt();
     
-        while (t-- > 0) {
-            int n = in.nextInt(); 
-            int[] a = new int[n];
-            for (int i = 0; i < n; i++) {
-                a[i] = in.nextInt();
-            }
-
-            HashMap<Integer, Queue<Integer>> map = new HashMap<>();
-            for (int i = 0; i < n; i++) {
-                int setBits = Integer.bitCount(a[i]);
-                map.putIfAbsent(setBits, new LinkedList<>());
-                map.get(setBits).add(i);
-            }
-
-            int[] b = new int[n];
-            for (int i = 0; i < n; i++) {
-                int setBits = Integer.bitCount(i + 1);
-                if (map.containsKey(setBits) && !map.get(setBits).isEmpty()) {
-                    int idx = map.get(setBits).poll();
-                    b[idx] = i + 1;
+        while (t != 0) {
+            t--;
+            int n=in.nextInt();
+            String s=in.next();
+            boolean flag=false;
+            String ans="";
+            for(int i=0;i<n;i++){
+                if(s.charAt(i) != 'z'){
+                    flag=true;
                 }
+                ans+='z';
             }
-
-            boolean flag = true;
-            for (int i = 1; i < n; i++) {
-                if (b[i] < b[i - 1]) {
-                    flag = false;
-                    break;
-                }
-            }
-
-            if (flag) {
-                System.out.println("Yes");
-            } else {
-                System.out.println("No");
+            if(flag){
+                System.out.println(ans);
+            }else{
+                System.out.println(-1);
             }
         }
     }

@@ -1,7 +1,8 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-public class Hamming_equivalent {
+
+public class Make_same {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -165,41 +166,36 @@ public class Hamming_equivalent {
     public static void main(String[] args) throws java.lang.Exception {
         int t = in.nextInt();
     
-        while (t-- > 0) {
-            int n = in.nextInt(); 
-            int[] a = new int[n];
-            for (int i = 0; i < n; i++) {
-                a[i] = in.nextInt();
-            }
-
-            HashMap<Integer, Queue<Integer>> map = new HashMap<>();
-            for (int i = 0; i < n; i++) {
-                int setBits = Integer.bitCount(a[i]);
-                map.putIfAbsent(setBits, new LinkedList<>());
-                map.get(setBits).add(i);
-            }
-
-            int[] b = new int[n];
-            for (int i = 0; i < n; i++) {
-                int setBits = Integer.bitCount(i + 1);
-                if (map.containsKey(setBits) && !map.get(setBits).isEmpty()) {
-                    int idx = map.get(setBits).poll();
-                    b[idx] = i + 1;
+        while (t != 0) {
+            t--;
+            int n=in.nextInt();
+            String s1=in.next();
+            String s2=in.next();
+            String s3=in.next();
+            int c0=0;
+            int c1=0;
+            int c2=0;
+            for(int i=0;i<n;i++){
+                if(s1.charAt(i) == '0'){
+                    c0++;
+                }
+                if(s2.charAt(i) == '0'){
+                    c1++;
+                }
+                if(s3.charAt(i) == '0'){
+                    c2++;
                 }
             }
-
-            boolean flag = true;
-            for (int i = 1; i < n; i++) {
-                if (b[i] < b[i - 1]) {
-                    flag = false;
-                    break;
+            if((c0+c1+c2)%n != 0){
+                System.out.println(-1);
+            }else{
+                if(c0+c1+c2 == 2*n){
+                    int max1=n-Math.min(c0,Math.min(c1,c2));
+                    System.out.println(n-max1);
+                }else{
+                    int max0=Math.max(c1,Math.max(c0,c2));
+                    System.out.println(n-max0);
                 }
-            }
-
-            if (flag) {
-                System.out.println("Yes");
-            } else {
-                System.out.println("No");
             }
         }
     }

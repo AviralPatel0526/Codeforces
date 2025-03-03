@@ -1,7 +1,8 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-public class Hamming_equivalent {
+
+public class B_The_Number_of_Products {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -12,15 +13,16 @@ public class Hamming_equivalent {
         }
         return a;
     }
-    
+
     // LCM Method
     static long lcm(long a, long b) {
         return (a / gcd(a, b)) * b;
     }
-    
+
     // Find Power Method
     static long findPower(long num, long base) {
-        if (num < 1 || base <= 1) return -1;
+        if (num < 1 || base <= 1)
+            return -1;
         double logResult = Math.log(num) / Math.log(base);
         if (Math.abs(logResult - Math.round(logResult)) < 1e-10) {
             return (long) Math.round(logResult);
@@ -28,7 +30,7 @@ public class Hamming_equivalent {
             return -1;
         }
     }
-    
+
     // Fast Exponentiation Method using Modular Arithmetic
     static long fastExponentiation(long base, long exp, long mod) {
         long result = 1;
@@ -42,9 +44,10 @@ public class Hamming_equivalent {
         }
         return result;
     }
-    
+
     // Sieve Method
     static boolean[] sieve;
+
     static void fillSieve(int ssize) {
         sieve = new boolean[ssize + 1];
         Arrays.fill(sieve, true);
@@ -57,9 +60,10 @@ public class Hamming_equivalent {
             }
         }
     }
-    
+
     // Smallest Prime Factor (SPF) Method
     static int[] spf;
+
     static void fillSpf(int ssize) {
         spf = new int[ssize + 1];
         for (int i = 0; i <= ssize; i++) {
@@ -75,7 +79,7 @@ public class Hamming_equivalent {
             }
         }
     }
-    
+
     // Reverse Array Function
     static void reverse(long[] arr) {
         int n = arr.length;
@@ -85,7 +89,7 @@ public class Hamming_equivalent {
             arr[n - i - 1] = temp;
         }
     }
-    
+
     // Print Array Elements (Space-separated)
     static void aout(long[] arr) {
         StringBuilder sb = new StringBuilder();
@@ -94,7 +98,7 @@ public class Hamming_equivalent {
         }
         System.out.println(sb.toString().trim());
     }
-    
+
     // Print ArrayList Elements (Space-separated)
     static void lout(ArrayList<Long> list) {
         StringBuilder sb = new StringBuilder();
@@ -103,31 +107,33 @@ public class Hamming_equivalent {
         }
         System.out.println(sb.toString().trim());
     }
-    
+
     static FastReader in = new FastReader();
-    
+
     // Input of int array
     static int[] ai(int n) {
         int[] arr = new int[n];
-        for (int i = 0; i < n; i++) arr[i] = in.nextInt();
+        for (int i = 0; i < n; i++)
+            arr[i] = in.nextInt();
         return arr;
     }
-    
+
     // Input of long array
     static long[] al(int n) {
         long[] arr = new long[n];
-        for (int i = 0; i < n; i++) arr[i] = in.nextLong();
+        for (int i = 0; i < n; i++)
+            arr[i] = in.nextLong();
         return arr;
     }
-    
+
     static class FastReader {
         BufferedReader br;
         StringTokenizer st;
-    
+
         public FastReader() {
             br = new BufferedReader(new InputStreamReader(System.in));
         }
-    
+
         String next() {
             while (st == null || !st.hasMoreTokens()) {
                 try {
@@ -138,19 +144,19 @@ public class Hamming_equivalent {
             }
             return st.nextToken();
         }
-    
+
         int nextInt() {
             return Integer.parseInt(next());
         }
-    
+
         long nextLong() {
             return Long.parseLong(next());
         }
-    
+
         double nextDouble() {
             return Double.parseDouble(next());
         }
-    
+
         String nextLine() {
             String str = "";
             try {
@@ -161,46 +167,38 @@ public class Hamming_equivalent {
             return str;
         }
     }
-    
+
     public static void main(String[] args) throws java.lang.Exception {
-        int t = in.nextInt();
-    
-        while (t-- > 0) {
-            int n = in.nextInt(); 
-            int[] a = new int[n];
-            for (int i = 0; i < n; i++) {
-                a[i] = in.nextInt();
+        long n = in.nextInt();
+        long a[] = al((int)n);
+        long dp[] = new long[(int)n];
+        ArrayList<Long> neg = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            if (a[i] < 0) {
+                neg.add((long)i);
             }
+            if (a[i] < 0) {
+                if (neg.size() >= 2) {
+                    if(neg.get(neg.size() - 2) - 1 < 0){
+                        dp[i]=1;
+                    }else if(neg.get(neg.size() - 2) - 1 >= 0){
+                        dp[i] = 1 + dp[(int)(neg.get(neg.size() - 2) - 1)];
 
-            HashMap<Integer, Queue<Integer>> map = new HashMap<>();
-            for (int i = 0; i < n; i++) {
-                int setBits = Integer.bitCount(a[i]);
-                map.putIfAbsent(setBits, new LinkedList<>());
-                map.get(setBits).add(i);
-            }
-
-            int[] b = new int[n];
-            for (int i = 0; i < n; i++) {
-                int setBits = Integer.bitCount(i + 1);
-                if (map.containsKey(setBits) && !map.get(setBits).isEmpty()) {
-                    int idx = map.get(setBits).poll();
-                    b[idx] = i + 1;
+                    }
+                } else {
+                    dp[i] = 0; 
                 }
-            }
-
-            boolean flag = true;
-            for (int i = 1; i < n; i++) {
-                if (b[i] < b[i - 1]) {
-                    flag = false;
-                    break;
-                }
-            }
-
-            if (flag) {
-                System.out.println("Yes");
             } else {
-                System.out.println("No");
+                dp[i] = (i > 0 ? 1 + dp[i - 1] : 1);
             }
         }
+        long total=(n*(n+1))/2;
+        long sum=0;
+        for(int i=0;i<n;i++){
+            sum+=dp[i];
+        }
+        System.out.println(total-sum+" "+sum);
+        // System.out.println(Arrays.toString(dp));
+
     }
 }

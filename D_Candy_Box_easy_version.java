@@ -1,7 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-public class Hamming_equivalent {
+public class D_Candy_Box_easy_version {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -165,42 +165,31 @@ public class Hamming_equivalent {
     public static void main(String[] args) throws java.lang.Exception {
         int t = in.nextInt();
     
-        while (t-- > 0) {
-            int n = in.nextInt(); 
-            int[] a = new int[n];
-            for (int i = 0; i < n; i++) {
-                a[i] = in.nextInt();
+        while (t != 0) {
+            t--;
+            int n=in.nextInt();
+            int a[]=ai(n);
+            HashMap<Integer,Integer> map=new HashMap<>();
+            for(int i=0;i<n;i++){
+                map.put(a[i],map.getOrDefault(a[i], 0)+1);
             }
-
-            HashMap<Integer, Queue<Integer>> map = new HashMap<>();
-            for (int i = 0; i < n; i++) {
-                int setBits = Integer.bitCount(a[i]);
-                map.putIfAbsent(setBits, new LinkedList<>());
-                map.get(setBits).add(i);
+            ArrayList<Integer> list=new ArrayList<>();
+            for(Integer key:map.keySet()){
+                list.add(map.get(key));
             }
-
-            int[] b = new int[n];
-            for (int i = 0; i < n; i++) {
-                int setBits = Integer.bitCount(i + 1);
-                if (map.containsKey(setBits) && !map.get(setBits).isEmpty()) {
-                    int idx = map.get(setBits).poll();
-                    b[idx] = i + 1;
+            Collections.sort(list,(x,y)->y-x);
+            int ans=list.get(0);
+            int cnt=list.get(0);
+            for(int i=1;i<list.size();i++){
+                if(list.get(i) >= cnt && cnt >= 1){
+                    cnt--;
+                    ans+=cnt;
+                }else if(list.get(i) < cnt){
+                    cnt=list.get(i);
+                    ans+=list.get(i);
                 }
             }
-
-            boolean flag = true;
-            for (int i = 1; i < n; i++) {
-                if (b[i] < b[i - 1]) {
-                    flag = false;
-                    break;
-                }
-            }
-
-            if (flag) {
-                System.out.println("Yes");
-            } else {
-                System.out.println("No");
-            }
+            System.out.println(ans);
         }
     }
 }

@@ -1,7 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-public class Hamming_equivalent {
+public class B_Mashmokh_and_ACM {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -161,46 +161,33 @@ public class Hamming_equivalent {
             return str;
         }
     }
-    
-    public static void main(String[] args) throws java.lang.Exception {
-        int t = in.nextInt();
-    
-        while (t-- > 0) {
-            int n = in.nextInt(); 
-            int[] a = new int[n];
-            for (int i = 0; i < n; i++) {
-                a[i] = in.nextInt();
-            }
+    static long mod=1000000007;
+    static long f(int length, int last, int n, int k, Long[][] dp) {
+        if (length == k) return 1; 
+        if (dp[length][last] != null) return dp[length][last]; 
 
-            HashMap<Integer, Queue<Integer>> map = new HashMap<>();
-            for (int i = 0; i < n; i++) {
-                int setBits = Integer.bitCount(a[i]);
-                map.putIfAbsent(setBits, new LinkedList<>());
-                map.get(setBits).add(i);
-            }
-
-            int[] b = new int[n];
-            for (int i = 0; i < n; i++) {
-                int setBits = Integer.bitCount(i + 1);
-                if (map.containsKey(setBits) && !map.get(setBits).isEmpty()) {
-                    int idx = map.get(setBits).poll();
-                    b[idx] = i + 1;
-                }
-            }
-
-            boolean flag = true;
-            for (int i = 1; i < n; i++) {
-                if (b[i] < b[i - 1]) {
-                    flag = false;
-                    break;
-                }
-            }
-
-            if (flag) {
-                System.out.println("Yes");
-            } else {
-                System.out.println("No");
-            }
+        long count = 0;
+        for (int next = last; next <= n; next += last) {
+            count = (count + f(length + 1, next, n, k, dp))%mod;
         }
+
+        dp[length][last] = count; 
+        return count;
     }
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int k = in.nextInt(); 
+
+        Long[][] dp = new Long[k + 1][n + 1]; 
+        long result = 0;
+
+        for (int start = 1; start <= n; start++) {
+            result = (result+f(1, start, n, k, dp))%mod;
+        }
+
+        System.out.println(result);
+    }
+
 }

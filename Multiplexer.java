@@ -1,7 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-public class Hamming_equivalent {
+public class Multiplexer {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -164,43 +164,43 @@ public class Hamming_equivalent {
     
     public static void main(String[] args) throws java.lang.Exception {
         int t = in.nextInt();
-    
+
         while (t-- > 0) {
-            int n = in.nextInt(); 
-            int[] a = new int[n];
+            int n = in.nextInt();
+            int x = in.nextInt();
+            int a[] = new int[n];
             for (int i = 0; i < n; i++) {
                 a[i] = in.nextInt();
             }
 
-            HashMap<Integer, Queue<Integer>> map = new HashMap<>();
+            HashMap<Integer, ArrayList<Integer>> map = new HashMap<>();
             for (int i = 0; i < n; i++) {
-                int setBits = Integer.bitCount(a[i]);
-                map.putIfAbsent(setBits, new LinkedList<>());
-                map.get(setBits).add(i);
+                map.computeIfAbsent(a[i], k -> new ArrayList<>()).add(i);
             }
 
-            int[] b = new int[n];
-            for (int i = 0; i < n; i++) {
-                int setBits = Integer.bitCount(i + 1);
-                if (map.containsKey(setBits) && !map.get(setBits).isEmpty()) {
-                    int idx = map.get(setBits).poll();
-                    b[idx] = i + 1;
+            int max = Integer.MIN_VALUE;
+            for (Integer key : map.keySet()) {
+                ArrayList<Integer> list = map.get(key);
+                max = Math.max(max, list.size());
+
+                if (x != 1 && key % x == 0 && map.containsKey(key / x)) {
+                    ArrayList<Integer> list2 = map.get(key / x);
+                    TreeMap<Integer, Integer> m = new TreeMap<>();
+
+                    for (int i : list) m.put(i, -1);
+                    for (int i : list2) m.put(i, 1);
+
+                    int om = 0, cs = 0;
+                    for (int v : m.values()) {
+                        cs += v;
+                        if (cs < 0) cs = 0;
+                        om = Math.max(om, cs);
+                    }
+
+                    max = Math.max(max, list.size() + om);
                 }
             }
-
-            boolean flag = true;
-            for (int i = 1; i < n; i++) {
-                if (b[i] < b[i - 1]) {
-                    flag = false;
-                    break;
-                }
-            }
-
-            if (flag) {
-                System.out.println("Yes");
-            } else {
-                System.out.println("No");
-            }
+            System.out.println(max);
         }
     }
 }

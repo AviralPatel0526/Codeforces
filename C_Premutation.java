@@ -1,7 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-public class Hamming_equivalent {
+public class C_Premutation {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -161,46 +161,67 @@ public class Hamming_equivalent {
             return str;
         }
     }
-    
+     
     public static void main(String[] args) throws java.lang.Exception {
         int t = in.nextInt();
     
-        while (t-- > 0) {
-            int n = in.nextInt(); 
-            int[] a = new int[n];
-            for (int i = 0; i < n; i++) {
-                a[i] = in.nextInt();
-            }
-
-            HashMap<Integer, Queue<Integer>> map = new HashMap<>();
-            for (int i = 0; i < n; i++) {
-                int setBits = Integer.bitCount(a[i]);
-                map.putIfAbsent(setBits, new LinkedList<>());
-                map.get(setBits).add(i);
-            }
-
-            int[] b = new int[n];
-            for (int i = 0; i < n; i++) {
-                int setBits = Integer.bitCount(i + 1);
-                if (map.containsKey(setBits) && !map.get(setBits).isEmpty()) {
-                    int idx = map.get(setBits).poll();
-                    b[idx] = i + 1;
+        while (t != 0) {
+            t--;
+            int n=in.nextInt();
+            int a[][]=new int[n][n-1];
+            for(int i=0;i<n;i++){
+                for(int j=0;j<n-1;j++){
+                    a[i][j]=in.nextInt();
                 }
             }
-
-            boolean flag = true;
-            for (int i = 1; i < n; i++) {
-                if (b[i] < b[i - 1]) {
-                    flag = false;
-                    break;
+            int idx1=-1;
+            int idx2=-1;
+            int pos=-1;
+            outer:for(int i=0;i<n-1;i++){
+                
+                for(int j=i+1;j<n;j++){
+                    int cnt=0;
+                    for(int k=0;k<n-1;k++){
+                        if(a[i][k] != a[j][k]){
+                            cnt++;
+                            pos=k;
+                        }
+                    }
+                    if(cnt == 1){
+                        idx1=i;
+                        idx2=j;
+                        break outer;
+                    }
                 }
             }
-
-            if (flag) {
-                System.out.println("Yes");
-            } else {
-                System.out.println("No");
+            int first=-1;
+            int second=-1;
+            outer:for(int i=0;i<n;i++){
+                if(i!=idx1 && i != idx2){
+                    for(int j=0;j<n-1;j++){
+                        if(a[i][j] == a[idx1][pos]){
+                            first=a[idx1][pos];
+                            second=a[idx2][pos];
+                            break outer;
+                        }
+                        if(a[i][j] == a[idx2][pos]){
+                            first=a[idx2][pos];
+                            second=a[idx1][pos];
+                            break outer;
+                        }
+                    }
+                }
             }
+            ArrayList<Long> ans=new ArrayList<>();
+            for(int j=0;j<n-1;j++){
+                if(j == pos){
+                    ans.add((long)first);
+                    ans.add((long)second);
+                }else{
+                    ans.add((long)a[idx1][j]);
+                }
+            }
+            lout(ans);
         }
     }
 }

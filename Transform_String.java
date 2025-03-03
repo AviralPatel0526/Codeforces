@@ -1,7 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-public class Hamming_equivalent {
+public class Transform_String {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -161,45 +161,46 @@ public class Hamming_equivalent {
             return str;
         }
     }
-    
     public static void main(String[] args) throws java.lang.Exception {
         int t = in.nextInt();
     
-        while (t-- > 0) {
-            int n = in.nextInt(); 
-            int[] a = new int[n];
-            for (int i = 0; i < n; i++) {
-                a[i] = in.nextInt();
-            }
-
-            HashMap<Integer, Queue<Integer>> map = new HashMap<>();
-            for (int i = 0; i < n; i++) {
-                int setBits = Integer.bitCount(a[i]);
-                map.putIfAbsent(setBits, new LinkedList<>());
-                map.get(setBits).add(i);
-            }
-
-            int[] b = new int[n];
-            for (int i = 0; i < n; i++) {
-                int setBits = Integer.bitCount(i + 1);
-                if (map.containsKey(setBits) && !map.get(setBits).isEmpty()) {
-                    int idx = map.get(setBits).poll();
-                    b[idx] = i + 1;
+        while (t-- != 0) {
+            String a = in.next();
+            String b = in.next();
+            int n = a.length();
+            int m = b.length();
+            boolean[] matched = new boolean[n];  
+            int j = n - 1;
+            boolean found = true;
+            for (int i = m - 1; i >= 0; i--) {
+                char ch = b.charAt(i);
+                while (j >= 0 && a.charAt(j) != ch) {
+                    j--;
                 }
-            }
-
-            boolean flag = true;
-            for (int i = 1; i < n; i++) {
-                if (b[i] < b[i - 1]) {
-                    flag = false;
+                if (j == -1) {  
+                    found = false;
                     break;
                 }
+                matched[j] = true;  
+                j--;  
             }
-
-            if (flag) {
-                System.out.println("Yes");
+            
+           
+            if (found) {
+                long ans = 0;
+                long cnt = 1;  
+                
+                for (int i = 0; i < n; i++) {
+                    if (matched[i]) {
+                        cnt++;  
+                    } else {
+                        ans += cnt;     
+                    }
+                }
+                
+                System.out.println(ans);
             } else {
-                System.out.println("No");
+                System.out.println(-1); 
             }
         }
     }

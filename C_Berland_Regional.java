@@ -1,7 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-public class Hamming_equivalent {
+public class C_Berland_Regional {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -164,43 +164,62 @@ public class Hamming_equivalent {
     
     public static void main(String[] args) throws java.lang.Exception {
         int t = in.nextInt();
-    
-        while (t-- > 0) {
-            int n = in.nextInt(); 
-            int[] a = new int[n];
-            for (int i = 0; i < n; i++) {
-                a[i] = in.nextInt();
-            }
+        
+        // jo bhi dekh raha hai isko c++ me convert karke submit karna chal jaega
 
-            HashMap<Integer, Queue<Integer>> map = new HashMap<>();
+        while (t != 0) {
+            t--;
+            int n = in.nextInt();
+            int a[] = ai(n);
+            long b[] = al(n);
+            HashMap<Integer, ArrayList<Long>> map = new HashMap<>();
+            
+            // Populate the map with keys from array `a` and values from array `b`
             for (int i = 0; i < n; i++) {
-                int setBits = Integer.bitCount(a[i]);
-                map.putIfAbsent(setBits, new LinkedList<>());
-                map.get(setBits).add(i);
-            }
-
-            int[] b = new int[n];
-            for (int i = 0; i < n; i++) {
-                int setBits = Integer.bitCount(i + 1);
-                if (map.containsKey(setBits) && !map.get(setBits).isEmpty()) {
-                    int idx = map.get(setBits).poll();
-                    b[idx] = i + 1;
+                if (map.containsKey(a[i])) {
+                    map.get(a[i]).add(b[i]);
+                } else {
+                    ArrayList<Long> temp = new ArrayList<>();
+                    temp.add(b[i]);
+                    map.put(a[i], temp);
                 }
             }
-
-            boolean flag = true;
-            for (int i = 1; i < n; i++) {
-                if (b[i] < b[i - 1]) {
-                    flag = false;
-                    break;
+        
+            // Sort the ArrayList in descending order for each key
+            for (Integer key : map.keySet()) {
+                ArrayList<Long> temp = map.get(key);
+                temp.sort((x, y) -> Long.compare(y, x));
+                map.put(key, temp);
+            }
+        
+            // Calculate the cumulative sums for each ArrayList in the map
+            for (Integer key : map.keySet()) {
+                ArrayList<Long> temp = map.get(key);
+                for (int i = 1; i < temp.size(); i++) {
+                    temp.set(i, temp.get(i) + temp.get(i - 1));
                 }
+                map.put(key, temp);
             }
-
-            if (flag) {
-                System.out.println("Yes");
-            } else {
-                System.out.println("No");
+        
+            long ans[] = new long[n];
+            for (int i = 1; i <= n; i++) {
+                long sum = 0;
+                Iterator<Map.Entry<Integer, ArrayList<Long>>> iterator = map.entrySet().iterator();
+                while (iterator.hasNext()) {
+                    Map.Entry<Integer, ArrayList<Long>> entry = iterator.next();
+                    ArrayList<Long> temp = entry.getValue();
+                    int size = temp.size();
+        
+                    if (size < i) {
+                        iterator.remove(); 
+                    } else {
+                        sum += temp.get((size/i)*i - 1);
+                    }
+                }
+        
+                ans[i - 1] = sum;
             }
+            aout(ans);
         }
     }
 }

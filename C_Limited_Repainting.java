@@ -1,7 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-public class Hamming_equivalent {
+public class C_Limited_Repainting {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -161,46 +161,62 @@ public class Hamming_equivalent {
             return str;
         }
     }
-    
-    public static void main(String[] args) throws java.lang.Exception {
+    public static boolean check(int k, long mid, long a[], String s) {
+        int cnt = 0;
+        char prev = ' ';
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] > mid) {
+                if (cnt == 0) {
+                    if (s.charAt(i) == 'B') {
+                        cnt++;
+                        prev = 'B';
+                    }
+                } else {
+                    if (s.charAt(i) != prev) {
+                        if(prev == 'R'){
+                            cnt++;
+                        }
+                        prev = (prev == 'B') ? 'R' : 'B';
+                    }
+                }
+            }
+        }
+        return cnt <= k;
+    }
+
+    public static void main(String[] args) {
         int t = in.nextInt();
     
         while (t-- > 0) {
-            int n = in.nextInt(); 
-            int[] a = new int[n];
+            int n = in.nextInt();
+            int k = in.nextInt();
+            String s = in.next();
+            long a[] = new long[n];
+            long maxElement = 0;
             for (int i = 0; i < n; i++) {
-                a[i] = in.nextInt();
+                a[i] = in.nextLong();
+                maxElement = Math.max(maxElement, a[i]);
             }
 
-            HashMap<Integer, Queue<Integer>> map = new HashMap<>();
-            for (int i = 0; i < n; i++) {
-                int setBits = Integer.bitCount(a[i]);
-                map.putIfAbsent(setBits, new LinkedList<>());
-                map.get(setBits).add(i);
-            }
+            long l = 0, h = maxElement, ans = -1;
 
-            int[] b = new int[n];
-            for (int i = 0; i < n; i++) {
-                int setBits = Integer.bitCount(i + 1);
-                if (map.containsKey(setBits) && !map.get(setBits).isEmpty()) {
-                    int idx = map.get(setBits).poll();
-                    b[idx] = i + 1;
+            while (l <= h) {
+                long mid = (l + h) / 2;
+                if (check(k, mid, a, s)) {
+                    ans = mid;
+                    h = mid - 1;
+                } else {
+                    l = mid + 1;
                 }
             }
-
-            boolean flag = true;
-            for (int i = 1; i < n; i++) {
-                if (b[i] < b[i - 1]) {
-                    flag = false;
-                    break;
-                }
-            }
-
-            if (flag) {
-                System.out.println("Yes");
-            } else {
-                System.out.println("No");
-            }
+            // Arrays.sort(a);
+            // for(int i=0;i<n;i++){
+            //     if(a[i] >= ans){
+            //         ans=a[i];
+            //         break;
+            //     }
+            // }
+            System.out.println(ans);
         }
     }
 }

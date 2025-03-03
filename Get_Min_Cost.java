@@ -1,7 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-public class Hamming_equivalent {
+public class Get_Min_Cost {
 
     // GCD Method
     static long gcd(long a, long b) {
@@ -161,46 +161,34 @@ public class Hamming_equivalent {
             return str;
         }
     }
-    
-    public static void main(String[] args) throws java.lang.Exception {
-        int t = in.nextInt();
-    
-        while (t-- > 0) {
-            int n = in.nextInt(); 
-            int[] a = new int[n];
-            for (int i = 0; i < n; i++) {
-                a[i] = in.nextInt();
-            }
-
-            HashMap<Integer, Queue<Integer>> map = new HashMap<>();
-            for (int i = 0; i < n; i++) {
-                int setBits = Integer.bitCount(a[i]);
-                map.putIfAbsent(setBits, new LinkedList<>());
-                map.get(setBits).add(i);
-            }
-
-            int[] b = new int[n];
-            for (int i = 0; i < n; i++) {
-                int setBits = Integer.bitCount(i + 1);
-                if (map.containsKey(setBits) && !map.get(setBits).isEmpty()) {
-                    int idx = map.get(setBits).poll();
-                    b[idx] = i + 1;
-                }
-            }
-
-            boolean flag = true;
-            for (int i = 1; i < n; i++) {
-                if (b[i] < b[i - 1]) {
-                    flag = false;
-                    break;
-                }
-            }
-
-            if (flag) {
-                System.out.println("Yes");
-            } else {
-                System.out.println("No");
-            }
+    static int f(int i,int prev,int a[]){
+        if(i >= a.length){
+              int x=a[prev];
+              if(i - 1 < a.length){
+                x=Math.max(x,a[i-1]);
+              }
+              return x;
         }
+        int choice1=1000000000;
+        int choice2=1000000000;
+        int choice3=1000000000;
+        if(prev == -1){
+            choice1=Math.max(a[i-1],a[i-2])+f(i+2,i,a);
+            choice2=Math.max(a[i-1],a[i])+f(i+2,i-2,a);
+            choice3=Math.max(a[i-2],a[i])+f(i+2,i-1,a);
+        }else{
+            choice1=Math.max(a[i-1],a[prev])+f(i+2,i,a);
+            choice2=Math.max(a[i-1],a[i])+f(i+2,prev,a);
+            choice3=Math.max(a[prev],a[i])+f(i+2,i-1,a);
+        }
+        return Math.min(choice1,Math.min(choice2,choice3));
     }
+    public static void main(String[] args) throws java.lang.Exception {
+        int n=in.nextInt();
+        int a[]=ai(n);
+        int ans=f(2,-1,a);
+        System.out.println(ans);
+        
+    }
+        
 }
