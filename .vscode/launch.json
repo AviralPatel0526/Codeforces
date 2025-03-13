@@ -6,6 +6,27 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Boxes",
+            "request": "launch",
+            "mainClass": "Boxes",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "hasdin2",
+            "request": "launch",
+            "mainClass": "hasdin2",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
+            "name": "hashdin",
+            "request": "launch",
+            "mainClass": "hashdin",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
             "name": "Multiplexer",
             "request": "launch",
             "mainClass": "Multiplexer",

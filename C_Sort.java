@@ -43,7 +43,7 @@ public class C_Sort {
                 }
                 System.out.println(diff / 2);
             }
-        
+            // System.out.println("ervbgjdfbvifdbgvkjfdh     "+ (~0));
         }
 
         
