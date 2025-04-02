@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "B_Floor_or_Ceil",
+            "request": "launch",
+            "mainClass": "B_Floor_or_Ceil",
+            "projectName": "Codeforces_99aaf5e"
+        },
+        {
+            "type": "java",
             "name": "Boxes",
             "request": "launch",
             "mainClass": "Boxes",
